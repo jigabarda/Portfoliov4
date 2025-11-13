@@ -14,6 +14,17 @@ const img1 = [
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
   "https://www.svgrepo.com/show/376337/node-js.svg",
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+  "https://www.svgrepo.com/show/512317/github-142.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bitbucket/bitbucket-original.svg",
+  "https://www.svgrepo.com/show/331760/sql-database-generic.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+  "https://www.svgrepo.com/show/473592/dotnet.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
+  "https://www.svgrepo.com/show/353622/c-sharp.svg",
+  "https://www.svgrepo.com/show/303232/mongodb-logo.svg",
+  "https://www.svgrepo.com/show/373966/php.svg",
+  "https://www.svgrepo.com/show/452091/python.svg",
 ];
 
 const img2 = [
@@ -29,6 +40,17 @@ const img2 = [
   "https://www.svgrepo.com/show/373966/php.svg",
   "https://www.svgrepo.com/show/452091/python.svg",
   "https://www.svgrepo.com/show/331642/webflow.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  "https://www.svgrepo.com/show/374167/vite.svg",
+  "https://www.svgrepo.com/show/354431/tailwindcss-icon.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+  "https://www.svgrepo.com/show/354512/vercel.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  "https://www.svgrepo.com/show/376337/node-js.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
 ];
 
 const Stack = () => {
