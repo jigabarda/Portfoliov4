@@ -6,29 +6,29 @@ import Stack from "./pages/Stack";
 import About from "./pages/About";
 import Footer from "./components/Footer";
 
-const page = () => {
+function Page() {
   return (
     <div className="bg-[#0B0B0B]">
       <div>
         <Navbar />
       </div>
-      <div>
+      <div id="home">
         <Home />
       </div>
-      <div>
+      <div id="projects">
         <Projects />
       </div>
-      <div>
+      <div id="stack">
         <Stack />
       </div>
-      <div>
+      <div id="about">
         <About />
       </div>
-      <div>
+      <div id="footer">
         <Footer />
       </div>
     </div>
   );
-};
+}
 
-export default page;
+export default Page;
