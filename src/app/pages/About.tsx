@@ -28,54 +28,54 @@ const About = () => {
 
   const experiences = [
     {
-      year: "2024 - Present",
+      year: "Appnado IT Solutions June 2025 - Present",
       role: "Full Stack Developer",
       desc: "Building full stack web applications using React, Node.js, and modern UI/UX principles.",
     },
     {
-      year: "2023",
-      role: "Front-End Developer Intern",
+      year: "Pru Life UK March 2025 - June 2025",
+      role: "Full Stack Web Developer Intern",
       desc: "Created responsive and accessible web interfaces and improved performance.",
     },
     {
-      year: "2022",
+      year: "Self Employed November 2023 - May 2025",
       role: "Freelance Developer",
       desc: "Developed small business websites and e-commerce UI layouts.",
     },
   ];
 
   return (
-    <div className="mx-50">
+    <div className="md:mx-12">
       <h1 className="text-center text-white p-7 font-black text-lg md:text-2xl">
         About Me
       </h1>
 
-      {/* GRID: 2 COLS × 2 ROWS */}
+      {/* GRID (2 rows × 2 cols) -- RIGHT SIDE WIDER */}
       <div
         className="
-          grid 
+          grid
           grid-cols-1
-          md:grid-cols-2 md:grid-rows-2 
-          xl:grid-cols-2 xl:grid-rows-2 
-          gap-6 
-          place-items-stretch
-          px-6 md:px-20 lg:px-32
+          md:grid-cols-[1fr_1.6fr]
+          md:grid-rows-2
+          xl:grid-cols-[1fr_1.6fr]
+          gap-6
+          px-6 md:px-20 lg:px-40
         "
       >
-        {/* IMAGE (Row 1 Col 1) - NO BG */}
-        <div className="flex justify-center md:justify-start">
+        {/* ==== LEFT SMALL COLUMN - ROW 1 ==== */}
+        <div className="flex justify-center md:justify-start max-w-xl">
           <Image
             src={"/images/profile.jfif"}
             alt="Profile"
-            width={300}
+            width={350}
             height={128}
             className="object-cover rounded-b-md"
             style={{ borderBottomLeftRadius: ".5rem" }}
           />
         </div>
 
-        {/* ABOUT TEXT (Row 1 Col 2) */}
-        <div className="flex flex-col items-center md:items-start text-center md:text-left gap-4 bg-white/20 p-6 rounded-md w-full h-full max-w-lg">
+        {/* ==== RIGHT LARGE COLUMN - ROW 1 ==== */}
+        <div className="flex flex-col items-center md:items-start text-center md:text-left gap-4 bg-white/5 p-6 rounded-md w-full">
           <h2 className="text-xl text-white font-bold md:mt-5">
             James Ivan Gabarda
           </h2>
@@ -92,6 +92,7 @@ const About = () => {
             Netflix, I focus on delivering high-quality user experiences that
             are fast, accessible, and intuitive across all devices.
           </p>
+
           <div className="pb-5">
             <button className="bg-black/90 p-3 rounded-full text-[10px] px-5 text-white md:bg-[#A30000]/20 md:text-[#A30000]">
               Learn More About Me
@@ -99,8 +100,25 @@ const About = () => {
           </div>
         </div>
 
-        {/* CERTIFICATES (Row 2 Col 1) - MATCH TEXT WIDTH */}
-        <div className="flex flex-col items-center justify-center text-center bg-white/20 p-6 rounded-md w-full h-full max-w-lg">
+        {/* ==== ROW 2 — COL 1 (SMALL COLUMN) → EXPERIENCE ==== */}
+        <div className="flex flex-col items-center md:items-start text-white bg-white/5 p-6 rounded-md w-full">
+          <h3 className="text-white font-semibold text-lg md:mt-5 mb-4">
+            Experience Timeline
+          </h3>
+
+          <div className="space-y-4 w-full">
+            {experiences.map((exp, i) => (
+              <div key={i} className="border-l-4 border-[#A30000] pl-4">
+                <p className="text-sm text-gray-400">{exp.year}</p>
+                <h4 className="font-bold">{exp.role}</h4>
+                <p className="text-gray-300 text-sm">{exp.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ==== ROW 2 — COL 2 (LARGE COLUMN) → CERTIFICATES ==== */}
+        <div className="flex flex-col items-center text-center bg-white/5 p-6 rounded-md w-full">
           <h3 className="text-white font-semibold text-lg md:mt-5 mb-2">
             Certificates
           </h3>
@@ -125,23 +143,6 @@ const About = () => {
                   height={250}
                   className="w-full h-auto object-contain"
                 />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* EXPERIENCE TIMELINE (Row 2 Col 2) - MATCH TEXT WIDTH */}
-        <div className="flex flex-col items-center text-left text-white bg-white/20 p-6 rounded-md w-full h-full max-w-lg">
-          <h3 className="text-white font-semibold text-lg md:mt-5 mb-4 text-center md:text-left">
-            Experience Timeline
-          </h3>
-
-          <div className="space-y-4 w-full">
-            {experiences.map((exp, i) => (
-              <div key={i} className="border-l-4 border-[#A30000] pl-4">
-                <p className="text-sm text-gray-400">{exp.year}</p>
-                <h4 className="font-bold">{exp.role}</h4>
-                <p className="text-gray-300 text-sm">{exp.desc}</p>
               </div>
             ))}
           </div>
