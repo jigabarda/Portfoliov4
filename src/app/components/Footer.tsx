@@ -3,23 +3,23 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-  <footer className="text-white px-8 py-10">
+    <footer className="text-white px-8 py-10">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto text-sm">
         {/* Logo */}
-      <div className="flex-1 flex items-center h-full">
-        <div className="flex items-center justify-center -ml-4">
-          <Image
-            src={"/images/logo2.png"}
-            alt="Profile"
-            width={150}
-            height={150}
-          />
+        <div className="flex-1 flex items-center h-full">
+          <div className="flex items-center justify-center -ml-4">
+            <Image
+              src={"/images/logo2.png"}
+              alt="Profile"
+              width={150}
+              height={150}
+            />
+          </div>
         </div>
-      </div>
 
         {/* Navigation & Follow Me (2 columns on mobile) */}
         <div className="col-span-2 md:col-span-1 ">
-            <div className="grid grid-cols-2 md:gap-30">
+          <div className="grid grid-cols-2 md:gap-30">
             {/* Navigation */}
             <div>
               <h4 className="text-[#A30000] font-semibold mb-2">Navigation</h4>
@@ -33,7 +33,9 @@ const Footer = () => {
             </div>
             {/* Follow Me */}
             <div>
-              <h4 className="text-[#A30000] font-semibold mb-2 md:whitespace-nowrap">Follow Me</h4>
+              <h4 className="text-[#A30000] font-semibold mb-2 md:whitespace-nowrap">
+                Follow Me
+              </h4>
               <ul className="space-y-1">
                 <li>Facebook</li>
                 <li>Instagram</li>
