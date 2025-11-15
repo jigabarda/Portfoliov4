@@ -1,9 +1,9 @@
 import React from "react";
-import Navbar from "./about/page";
+import Navbar from "./components/Navbar";
 import Home from "./home/page";
 import Projects from "./projects/page";
 import Stack from "./stacks/page";
-import About from "./about/page";
+import About from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function Page() {
