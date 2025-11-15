@@ -1,126 +1,210 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
 import Image from "next/image";
+import { FaMapMarkerAlt, FaCalendar, FaEnvelope } from "react-icons/fa";
 
-const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+const About = () => {
+  const [selectedCert, setSelectedCert] = useState<string | null>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 15);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const certificates = [
+    {
+      title: "React Course Certificate",
+      image:
+        "https://udemy-certificate.s3.amazonaws.com/image/UC-e38cebd7-e5c9-4c4d-bc92-5e01f8fbdfdf.jpg?v=1733299197000",
+    },
+    {
+      title: "Node.js Course Certificate",
+      image:
+        "https://udemy-certificate.s3.amazonaws.com/image/UC-b3e81ac3-6dff-46df-897e-f833a0f6583e.jpg?v=1736828883000",
+    },
+    {
+      title: "Upcoming Certificate",
+      image:
+        "https://udemy-certificate.s3.amazonaws.com/image/UC-f008d853-c296-4f81-9358-4c9f51df5a01.jpg?v=1755337118000",
+    },
+  ];
 
-  const scrollToSection = (id: string) => {
-    setMenuOpen(false);
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
+  const experiences = [
+    {
+      year: "Appnado IT Solutions June 2025 - Present",
+      role: "Full Stack Developer",
+    },
+    {
+      year: "Pru Life UK March 2025 - June 2025",
+      role: "Full Stack Web Developer Intern",
+    },
+    {
+      year: "Self Employed November 2023 - May 2025",
+      role: "Freelance Developer",
+    },
+  ];
+
+  const techStack = {
+    Frontend: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
+    Backend: ["Node.js", "Express", "MongoDB", "Supabase"],
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-black/70 backdrop-blur-md shadow-lg py-2"
-          : "bg-transparent py-4"
-      }`}
-    >
-      <div className="flex items-center justify-between max-w-6xl mx-auto px-6">
-        {/* Logo */}
-        <div
-          className="flex items-center gap-2 cursor-pointer"
-          onClick={() => scrollToSection("home")}
-        >
+    <div className="mx-6 lg:mx-20 xl:mx-50 2xl:mx-100">
+      <h1 className="text-center text-white p-4 font-black text-lg md:text-2xl">
+        About Me
+      </h1>
+
+      {/* GRID FOR LAYOUT */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 auto-rows-auto items-stretch">
+        {/* ROW 1: PROFILE */}
+        <div className="bg-white/5 rounded-md flex justify-center items-center lg:col-span-1">
           <Image
-            src="/images/logo2.png"
-            alt="Logo"
-            width={100}
-            height={100}
-            className="object-contain"
+            src="/images/profile2.jpg"
+            alt="Profile"
+            width={300}
+            height={300}
+            className="rounded-md object-contain w-auto h-auto"
           />
         </div>
 
-        {/* Right Side */}
-        <div className="flex items-center gap-4">
-          {/* Get in Touch Button */}
-          <button
-            type="button"
-            className="bg-[#A30000] px-4 py-2 text-[15px] rounded-sm text-white"
-            onClick={() => scrollToSection("footer")}
-          >
-            Get in touch
-          </button>
+        {/* BASIC INFO */}
+        <div className="bg-white/5 p-4 rounded-md flex flex-col gap-3 lg:col-span-2">
+          {/* Name with icon */}
+          <div className="flex items-center gap-2">
+            <h2 className="text-xl text-white font-bold">James Ivan Gabarda</h2>
+            <Image
+              src="https://cdn-icons-png.flaticon.com/512/7641/7641727.png"
+              alt="Icon"
+              width={15}
+              height={15}
+            />
+          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            type="button"
-            aria-label="Toggle menu"
-            className="sm:hidden flex flex-col justify-center items-center w-8 h-8 p-1 gap-[3px]"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <span className="block w-full h-[3px] bg-[#A30000] rounded"></span>
-            <span className="block w-full h-[3px] bg-[#A30000] rounded"></span>
-            <span className="block w-full h-[3px] bg-[#A30000] rounded"></span>
-          </button>
+          <h4 className="text-sm text-gray-400">
+            Full Stack Developer | Freelancer
+          </h4>
 
-          {/* Mobile Dropdown */}
-          <AnimatePresence>
-            {menuOpen && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "200px" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.4 }}
-                className="absolute top-14 right-6 w-40 bg-black/90 rounded shadow-lg sm:hidden overflow-hidden flex flex-col"
-              >
-                {[
-                  { id: "home", label: "Home" },
-                  { id: "projects", label: "Projects" },
-                  { id: "about", label: "About" },
-                  { id: "services", label: "Services" },
-                ].map(({ id, label }) => (
-                  <button
-                    key={id}
-                    onClick={() => scrollToSection(id)}
-                    className="text-white text-[15px] px-4 py-2 hover:bg-[#870000] text-left"
-                  >
-                    {label}
-                  </button>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <p className="text-gray-300 text-sm flex items-center gap-2">
+            <FaMapMarkerAlt className="text-white-500" />
+            Metro Manila, Philippines
+          </p>
 
-          {/* Desktop Nav */}
-          <nav className="hidden sm:flex items-center gap-6 mr-3">
-            {[
-              { id: "home", label: "Home" },
-              { id: "about", label: "About" },
-              { id: "projects", label: "Projects" },
-              { id: "services", label: "Services" },
-              { id: "stack", label: "Stack" },
-            ].map(({ id, label }) => (
-              <button
-                key={id}
-                onClick={() => scrollToSection(id)}
-                className="text-[15px] text-[#A30000] relative group transition duration-300 cursor-pointer"
-              >
-                {label}
+          <div className="flex gap-3 mt-3 text-sm">
+            <button className="bg-blue-500/20 text-blue-500 flex px-3 py-2 items-center gap-2 rounded-md">
+              <FaCalendar className="text-white-500" />
+              Schedule Meeting
+            </button>
+            <button className="bg-white/10 text-white flex px-3 py-2 items-center gap-2 rounded-md">
+              <FaEnvelope className="text-white-500" />
+              Send Email
+            </button>
+          </div>
+        </div>
 
-                <span className="absolute left-1/2 -bottom-1 -translate-x-1/2 w-0 h-0.5 bg-[#A30000] rounded transition-all duration-500 group-hover:w-6"></span>
-              </button>
+        {/* ROW 2: ABOUT ME (col-span-2) */}
+        <div className="bg-white/5 p-4 rounded-md lg:col-span-2">
+          <h3 className="text-white font-semibold text-lg mb-3">About Me</h3>
+          <p className="text-gray-300 text-sm text-justify">
+            I’m a Full Stack Developer with a deep passion for creating scalable
+            and immersive digital experiences. I focus on clean architecture,
+            accessibility, performance, and seamless UI/UX across devices.
+          </p>
+        </div>
+
+        {/* ROW 2: EXPERIENCE TIMELINE (col-span-1) */}
+        <div className="bg-white/5 p-4 rounded-md">
+          <h3 className="text-white font-semibold text-md mb-4">
+            Experience Timeline
+          </h3>
+          <div className="space-y-4">
+            {experiences.map((exp, i) => (
+              <div key={i} className="border-l-4 border-[#A30000] pl-4">
+                <p className="text-xs text-gray-400">{exp.year}</p>
+                <h4 className="font-bold text-sm text-white">{exp.role}</h4>
+              </div>
             ))}
-          </nav>
+          </div>
+        </div>
+
+        {/* ROW 3: TECH STACK (col-span-1) */}
+        <div className="bg-white/5 p-4 rounded-md lg:col-span-1">
+          <h3 className="text-white font-semibold text-lg mb-2">Tech Stack</h3>
+          {Object.entries(techStack).map(([category, items], idx) => (
+            <div key={idx} className="mb-4">
+              <h4 className="text-white font-bold mb-2">{category}</h4>
+              <div className="flex flex-wrap gap-2">
+                {items.map((t, i) => (
+                  <span
+                    key={i}
+                    className={`px-3 py-1 text-xs rounded-full ${
+                      category === "Frontend"
+                        ? "bg-green-500/20 text-green-500"
+                        : category === "Backend"
+                        ? "bg-red-500/20 text-red-500"
+                        : "bg-white/20 border-white/30"
+                    }`}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ROW 3: CERTIFICATES (col-span-2) */}
+        <div className="bg-white/5 p-4 rounded-md lg:col-span-2">
+          <h3 className="text-white font-semibold text-lg mb-4">
+            Certificates
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {certificates.map((cert, idx) => (
+              <div
+                key={idx}
+                className="relative rounded-lg overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition"
+                onClick={() => setSelectedCert(cert.image)}
+              >
+                <Image
+                  src={cert.image}
+                  alt={cert.title}
+                  width={400}
+                  height={250}
+                  className="w-full h-auto object-contain rounded"
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center mt-4">
+            <a
+              href="/pages/certificates"
+              className="text-white bg-[#A30000]/30 px-4 py-2 rounded-full text-sm hover:bg-[#A30000]/50 transition"
+            >
+              View More
+            </a>
+          </div>
         </div>
       </div>
-    </nav>
+
+      {/* MODAL */}
+      {selectedCert && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="relative max-w-3xl w-full">
+            <button
+              onClick={() => setSelectedCert(null)}
+              className="absolute top-2 right-2 bg-white rounded-full px-3 py-1 text-black font-bold shadow"
+            >
+              ✕
+            </button>
+
+            <Image
+              src={selectedCert}
+              alt="Certificate"
+              width={1000}
+              height={700}
+              className="w-full h-auto rounded-lg object-contain"
+            />
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
-export default Navbar;
+export default About;

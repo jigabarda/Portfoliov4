@@ -7,7 +7,6 @@ const projectCards = [
   { id: 1, title: "Project One", content: "Project 1", image: "/vercel.svg" },
   { id: 2, title: "Project Two", content: "Project 2", image: "/vercel.svg" },
   { id: 3, title: "Project Three", content: "Project 3", image: "/globe.svg" },
-  { id: 4, title: "Project Four", content: "Project 4", image: "/window.svg" },
 ];
 
 const Projects = () => {
