@@ -49,13 +49,13 @@ const Navbar = () => {
         {/* Right Side */}
         <div className="flex items-center gap-4">
           {/* Get in Touch Button */}
-          <button
+          {/* <button
             type="button"
             className="bg-[#A30000] px-4 py-2 text-[15px] rounded-sm text-white"
             onClick={() => scrollToSection("footer")}
           >
             Get in touch
-          </button>
+          </button> */}
 
           {/* Mobile Menu Button */}
           <button
