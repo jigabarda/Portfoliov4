@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./home/page";
 import Projects from "./projects/page";
 import Stack from "./stacks/page";
-import About from "./components/Navbar";
+import About from "./components/About";
 import Footer from "./components/Footer";
 
 function Page() {
@@ -14,17 +14,15 @@ function Page() {
       <div id="home">
         <Home />
       </div>
-
-      <div id="projects">
-        <Projects />
+      <div id="about">
+        <About />
       </div>
 
       <div id="stack">
         <Stack />
       </div>
-
-      <div id="about">
-        <About />
+      <div id="projects">
+        <Projects />
       </div>
 
       <div id="footer">
