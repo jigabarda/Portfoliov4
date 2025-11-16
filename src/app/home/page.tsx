@@ -23,13 +23,15 @@ const Home = () => {
         montserrat.variable + " font-sans bg-gradient-home h-full pb-30"
       }
     >
-      <div>
+      <div className="lg:mx-5 xl:mx-20">
         <div className="text-white text-center mx-7 font-sans">
           <h1 className="pt-25 lg:pt-30 text-2xl md:text-4xl lg:text-5xl font-black font-sans">
             Hey There, <br />
             I&apos;m James Ivan Gabarda
           </h1>
-          <h5 className="font-sans md:text-xl lg:text-xl text-gray-400">Full Stack Web Developer</h5>
+          <h5 className="font-sans md:text-xl lg:text-xl text-gray-400">
+            Full Stack Web Developer
+          </h5>
           <p className="mt-5 font-sans md:text-xl lg:text-2xl lg:mx-25">
             Welcome to my portfolio! Explore my creative journey through web
             development and UI/UX design, where ideas come to life.
@@ -39,25 +41,25 @@ const Home = () => {
         <div className="flex space-x-4 mt-8 justify-center font-sans">
           <button
             title="LinkedIn"
-            className="border border-white w-10 h-10 rounded-full text-white flex cursor-pointer items-center justify-center text-sm hover:bg-[#FFFFFF]/70 hover:text-[#0077B5] hover:border-[#0077B5] transition-all duration-300 ease-in-out font-sans"
+            className="border border-white w-10 h-10 rounded-full text-white flex cursor-pointer items-center justify-center text-sm hover:bg-[#FFFFFF]/10 hover:text-[#0077B5] hover:border-[#0077B5] transition-all duration-300 ease-in-out font-sans"
           >
             <i className="fab fa-linkedin font-sans"></i>
           </button>
           <button
             title="Instagram"
-            className="border border-white w-10 h-10 rounded-full text-white flex cursor-pointer items-center justify-center text-sm hover:bg-[#FFFFFF]/70 hover:text-[#E4405F] hover:border-[#E4405F] transition-all duration-300 ease-in-out font-sans"
+            className="border border-white w-10 h-10 rounded-full text-white flex cursor-pointer items-center justify-center text-sm hover:bg-[#FFFFFF]/10 hover:text-[#E4405F] hover:border-[#E4405F] transition-all duration-300 ease-in-out font-sans"
           >
             <i className="fab fa-instagram font-sans"></i>
           </button>
           <button
             title="Facebook"
-            className="border border-white w-10 h-10 rounded-full text-white flex cursor-pointer items-center justify-center text-sm hover:bg-[#FFFFFF]/70 hover:text-[#1877F2] hover:border-[#1877F2] transition-all duration-300 ease-in-out font-sans"
+            className="border border-white w-10 h-10 rounded-full text-white flex cursor-pointer items-center justify-center text-sm hover:bg-[#FFFFFF]/10 hover:text-[#1877F2] hover:border-[#1877F2] transition-all duration-300 ease-in-out font-sans"
           >
             <i className="fab fa-facebook font-sans"></i>
           </button>
           <button
             title="Twitter"
-            className="border border-white w-10 h-10 rounded-full text-white flex cursor-pointer items-center justify-center text-sm hover:bg-[#FFFFFF]/70 hover:text-[#1DA1F2] hover:border-[#1DA1F2] transition-all duration-300 ease-in-out font-sans"
+            className="border border-white w-10 h-10 rounded-full text-white flex cursor-pointer items-center justify-center text-sm hover:bg-[#FFFFFF]/10 hover:text-[#1DA1F2] hover:border-[#1DA1F2] transition-all duration-300 ease-in-out font-sans"
           >
             <i className="fab fa-twitter font-sans"></i>
           </button>
@@ -109,7 +111,7 @@ const Home = () => {
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>  
+          </div>
         </div>
       </div>
     </motion.div>

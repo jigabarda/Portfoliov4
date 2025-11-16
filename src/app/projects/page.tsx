@@ -25,23 +25,7 @@ const Projects = () => {
       exit={{ opacity: 0, y: -30 }}
       transition={{ duration: 0.6, ease: "easeInOut" }}
     >
-      <div className="xl:mx-40 lg:mx-10">
-        <div className="absolute left-0 w-full overflow-hidden leading-[0]">
-          <svg
-            className="relative block w-[calc(109%+1.3px)] h-[46px]"
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39
-             C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35
-             A600.21,600.21,0,0,0,321.39,56.44Z"
-              className="fill-[#A30000]"
-            ></path>
-          </svg>
-        </div>
+      <div className="xl:mx-50 lg:mx-20">
         <h1 className="text-center p-7 font-black text-lg text-white">
           Projects
         </h1>
@@ -100,7 +84,7 @@ const Projects = () => {
           </div>
           <div className="w-full flex justify-end mt-2">
             <a
-              href="#"
+              href="/pages/projects"
               className="text-[#A30000] font-bold text-sm hover:underline transition-all duration-300"
             >
               View All Projects
