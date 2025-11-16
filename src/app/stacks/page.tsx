@@ -119,9 +119,9 @@ const Stack = () => {
 
   return (
     <div className="flex flex-col gap-6 items-center justify-center w-full py-10">
-      <h1 className="text-center p-4 font-black text-lg text-white">
+      {/* <h1 className="text-center p-4 font-black text-lg text-white">
         Tech Stack
-      </h1>
+      </h1> */}
       <div className="overflow-hidden w-full py-2">
         <div
           ref={trackRef1}
