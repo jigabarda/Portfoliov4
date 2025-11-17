@@ -4,7 +4,12 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const projectCards = [
-  { id: 1, title: "Project One", content: "Project 1", image: "/vercel.svg" },
+  {
+    id: 1,
+    title: "Project One",
+    content: "Project 1",
+    image: "/images/mentra.png",
+  },
   { id: 2, title: "Project Two", content: "Project 2", image: "/vercel.svg" },
   { id: 3, title: "Project Three", content: "Project 3", image: "/globe.svg" },
 ];
