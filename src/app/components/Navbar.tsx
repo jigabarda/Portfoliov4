@@ -28,7 +28,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Smooth scroll with offset
+  // Smooth scroll with manual animation to ensure consistent behavior
   const scrollToSection = (id: string) => {
     setMenuOpen(false);
     setActiveSection(id);
@@ -36,18 +36,34 @@ const Navbar = () => {
     const section = document.getElementById(id);
     if (!section) return;
 
-    // Wait for next frame to ensure element exists
-    requestAnimationFrame(() => {
-      const navbarHeight = 90; // adjust if needed
-      const top =
-        window.scrollY + section.getBoundingClientRect().top - navbarHeight;
+    const navEl = document.getElementById("site-navbar");
+    const navbarHeight = navEl ? navEl.offsetHeight : 0;
 
-      window.scrollTo({ top, behavior: "smooth" });
-    });
+    const target =
+      window.scrollY + section.getBoundingClientRect().top - navbarHeight;
+
+    const start = window.scrollY;
+    const change = target - start;
+    const duration = 800; // ms
+    const startTime = performance.now();
+
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOutCubic(progress);
+      window.scrollTo({ top: start + change * eased, left: 0 });
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+
+    requestAnimationFrame(animate);
   };
 
   return (
     <nav
+      id="site-navbar"
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled
           ? "bg-white/10 backdrop-blur-md shadow-lg py-2"
