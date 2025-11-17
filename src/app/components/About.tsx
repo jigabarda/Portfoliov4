@@ -127,6 +127,23 @@ const About = () => {
                 Send Email
               </button>
             </div>
+            <div className="flex justify-between items-center mt-4">
+              <div className="bg-white/5 p-4 rounded-md w-1/2 mr-2">
+                <p className="text-white text-xs">
+                  <span className="font-bold">Currently learning:</span> Web3,
+                  AI development
+                  <br />
+                  <span className="font-bold">Building: </span>Personal AI
+                  assistant with Node.js <br />
+                  <span className="font-bold">Exploring: </span>
+                  Performance-driven UI architecture
+                </p>
+              </div>
+              <div className="text-white bg-white/5 p-4 rounded-md w-1/2 mr-2">
+                <h3 className="font-bold text-xl">10+</h3>
+                <p className=" text-xs">Project Completed</p>
+              </div>
+            </div>
           </div>
 
           {/* ABOUT ME */}
