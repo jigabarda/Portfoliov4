@@ -5,29 +5,36 @@ import Projects from "./projects/page";
 import Stack from "./stacks/page";
 import About from "./components/About";
 import Footer from "./components/Footer";
+import Services from "./services/page";
 
 function Page() {
   return (
     <div className="bg-[#0B0B0B] scroll-smooth">
       <Navbar />
 
-      <div id="home">
+      <section id="home">
         <Home />
-      </div>
-      <div id="about">
+      </section>
+
+      <section id="about">
         <About />
-      </div>
+      </section>
 
-      <div id="stack">
+      <section id="stack">
         <Stack />
-      </div>
-      <div id="projects">
-        <Projects />
-      </div>
+      </section>
 
-      <div id="footer">
+      <section id="projects">
+        <Projects />
+      </section>
+
+      <section id="services">
+        <Services />
+      </section>
+
+      <section id="footer">
         <Footer />
-      </div>
+      </section>
     </div>
   );
 }
