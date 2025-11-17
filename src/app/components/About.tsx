@@ -94,7 +94,7 @@ const About = () => {
           </div>
 
           {/* BASIC INFO */}
-          <div className="bg-white/5 p-6 rounded-md flex flex-col gap-3 lg:col-span-2 mt-20">
+          <div className="bg-white/5 p-6 rounded-md flex flex-col gap-3 lg:col-span-2 lg:mt-20">
             <div className="flex items-center gap-2">
               <h2 className="text-2xl text-white font-bold">
                 James Ivan Gabarda
@@ -116,7 +116,7 @@ const About = () => {
               Full Stack Developer | Freelancer
             </h4>
 
-            <div className="flex gap-3 mt-3 text-sm">
+            <div className="flex gap-2 text-sm">
               <button className="bg-blue-500/20 text-blue-500 flex px-3 py-2 items-center gap-2 rounded-md">
                 <FaRegCalendar />
                 Schedule Meeting
@@ -127,20 +127,22 @@ const About = () => {
                 Send Email
               </button>
             </div>
-            <div className="flex justify-between items-center mt-4">
-              <div className="bg-white/5 p-4 rounded-md w-1/2 mr-2">
+            <div className="lg:flex lg:justify-between gap-2 lg:items-center">
+              <div className="bg-white/5 p-4 rounded-md lg:w-2/3">
                 <p className="text-white text-xs">
-                  <span className="font-bold">Currently learning:</span> Web3,
-                  AI development
+                  <span className="font-bold text-[#A30000]">
+                    Currently learning:
+                  </span>{" "}
+                  Web3, AI development
                   <br />
-                  <span className="font-bold">Building: </span>Personal AI
-                  assistant with Node.js <br />
-                  <span className="font-bold">Exploring: </span>
+                  <span className="font-bold text-[#A30000]">Building: </span>
+                  Personal AI assistant with Node.js <br />
+                  <span className="font-bold text-[#A30000]">Exploring: </span>
                   Performance-driven UI architecture
                 </p>
               </div>
-              <div className="text-white bg-white/5 p-4 rounded-md w-1/2 mr-2">
-                <h3 className="font-bold text-xl">10+</h3>
+              <div className="text-white bg-white/5 p-4 rounded-md lg:w-1/3 mt-4 lg:mt-0">
+                <h3 className="font-bold text-xl text-[#A30000]">10+</h3>
                 <p className=" text-xs">Project Completed</p>
               </div>
             </div>
