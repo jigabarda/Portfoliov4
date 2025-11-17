@@ -21,7 +21,7 @@ const projectCards = [
     id: 3,
     title: "E-commerce & M-commerce Platform",
     content: "Online Shopping Web & Mobile App",
-    image: "/images/ecom.jfif",
+    image: "/images/ecom.png",
   },
 ];
 
