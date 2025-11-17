@@ -2,16 +2,27 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { HiComputerDesktop } from "react-icons/hi2";
 
 const projectCards = [
   {
     id: 1,
-    title: "Project One",
-    content: "Project 1",
+    title: "Mentra ",
+    content: "AI Resume Analyzer and Mentorship Platform",
     image: "/images/mentra.png",
   },
-  { id: 2, title: "Project Two", content: "Project 2", image: "/vercel.svg" },
-  { id: 3, title: "Project Three", content: "Project 3", image: "/globe.svg" },
+  {
+    id: 2,
+    title: "Learning Management System",
+    content: "LMS for Educational Institutions",
+    image: "/images/cms.png",
+  },
+  {
+    id: 3,
+    title: "E-commerce & M-commerce Platform",
+    content: "Online Shopping Web & Mobile App",
+    image: "/images/ecom.jfif",
+  },
 ];
 
 const Projects = () => {
@@ -31,12 +42,13 @@ const Projects = () => {
       transition={{ duration: 0.6, ease: "easeInOut" }}
     >
       <div className="xl:mx-50 lg:mx-20">
-        <h1 className="text-center p-7 font-black text-lg text-white">
+        <h1 className="text-[#A30000] p-3 flex items-center gap-2 font-black text-lg text-white">
+          <HiComputerDesktop className="text-white-500" />
           Projects
         </h1>
         <div className="flex flex-col items-center justify-center p-4">
           <div className="flex items-center w-full max-w-md relative md:hidden">
-            <div className="relative rounded-xl shadow-lg p-6 text-white flex-1 text-center bg-white/5 min-h-[220px]">
+            <div className="relative rounded-xl shadow-lg p-4 text-white text-center bg-white/5">
               <motion.div
                 key={current}
                 initial={{ opacity: 0, x: 40 }}
@@ -45,44 +57,45 @@ const Projects = () => {
                 transition={{ duration: 0.6, ease: "easeInOut" }}
                 className="w-full flex flex-col items-center justify-center"
               >
-                <div className="flex flex-col items-center mb-2">
+                <div className="w-full">
                   <Image
                     src={projectCards[current].image}
                     alt={projectCards[current].title + " Image"}
-                    width={80}
-                    height={80}
-                    className="mx-auto mb-2 object-contain"
+                    width={1200}
+                    height={675}
+                    className="block w-full h-auto object-cover rounded"
                   />
                 </div>
-                <div className="text-base font-semibold mb-2">
-                  {projectCards[current].content}
+                <div className="mt-3">
+                  <div className="text-base font-semibold mb-1">
+                    {projectCards[current].title}
+                  </div>
+                  <div className="text-sm opacity-80">
+                    {projectCards[current].content}
+                  </div>
                 </div>
               </motion.div>
-              <div className="absolute left-4 bottom-4 text-sm text-white/80 font-bold tracking-wide">
-                {projectCards[current].title}
-              </div>
             </div>
           </div>
-          <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+          <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 items-stretch w-full">
             {projectCards.map((project) => (
-              <div
-                key={project.id}
-                className="relative rounded-xl shadow-lg p-6 text-white text-center bg-white/5 min-h-[220px] flex flex-col items-center"
-              >
-                <div className="flex flex-col items-center mb-2">
-                  <Image
-                    src={project.image}
-                    alt={project.title + " Image"}
-                    width={80}
-                    height={80}
-                    className="mx-auto mb-2 object-contain"
-                  />
-                </div>
-                <div className="text-base font-semibold mb-2">
-                  {project.content}
-                </div>
-                <div className="absolute left-4 bottom-4 text-sm text-white/80 font-bold tracking-wide">
-                  {project.title}
+              <div key={project.id} className="h-full">
+                <div className="relative h-full rounded-xl shadow-lg text-white bg-white/5 flex flex-col">
+                  <div className="w-full">
+                    <Image
+                      src={project.image}
+                      alt={project.title + " Image"}
+                      width={1200}
+                      height={675}
+                      className="block w-full h-auto object-cover rounded-t"
+                    />
+                  </div>
+                  <div className="p-3 mt-0">
+                    <div className="text-base font-semibold mb-1">
+                      {project.title}
+                    </div>
+                    <div className="text-xs opacity-80">{project.content}</div>
+                  </div>
                 </div>
               </div>
             ))}
