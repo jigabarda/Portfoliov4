@@ -80,7 +80,7 @@ const Projects = () => {
           <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 items-stretch w-full">
             {projectCards.map((project) => (
               <div key={project.id} className="h-full">
-                <div className="relative h-full rounded-xl shadow-lg text-white bg-white/5 flex flex-col">
+                <div className="relative h-full hover:opacity-50 cursor-pointer rounded-xl shadow-lg text-white bg-white/5 flex flex-col">
                   <div className="w-full">
                     <Image
                       src={project.image}
