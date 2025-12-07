@@ -63,7 +63,7 @@ const About = () => {
       transition={{ duration: 0.6, ease: "easeInOut" }}
     >
       <div className="mx-6 lg:mx-20 xl:mx-50 2xl:mx-100">
-        <div className="absolute left-0 w-full overflow-hidden leading-[0]">
+        {/* <div className="absolute left-0 w-full overflow-hidden leading-[0]">
           <svg
             className="relative block w-[calc(109%+1.3px)] h-[46px]"
             data-name="Layer 1"
@@ -78,12 +78,12 @@ const About = () => {
               className="fill-[#A30000]"
             ></path>
           </svg>
-        </div>
+        </div> */}
 
         {/* GRID LAYOUT */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 auto-rows-auto items-stretch">
           {/* ROW 1: PROFILE */}
-          <div className="bg-white/5 rounded-md flex justify-center items-center lg:col-span-1 mt-20">
+          <div className="bg-white/5 rounded-md flex justify-center items-center lg:col-span-1">
             <Image
               src="/images/profile2.jpg"
               alt="Profile"
@@ -94,7 +94,7 @@ const About = () => {
           </div>
 
           {/* BASIC INFO */}
-          <div className="bg-white/5 p-6 rounded-md flex flex-col gap-3 lg:col-span-2 lg:mt-20">
+          <div className="bg-white/5 p-6 rounded-md flex flex-col gap-3 lg:col-span-2">
             <div className="flex items-center gap-2">
               <h2 className="text-2xl text-white font-bold">
                 James Ivan Gabarda
