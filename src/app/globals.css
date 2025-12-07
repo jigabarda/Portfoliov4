@@ -34,10 +34,6 @@ body {
   font-family: var(--font-montserrat), Montserrat, sans-serif;
 }
 
-.bg-gradient-home {
-  background: linear-gradient(to bottom, #000000 0%, #a30000 88%, #a30000 100%);
-}
-
 html {
   scroll-behavior: smooth;
 }
