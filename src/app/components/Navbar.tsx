@@ -140,7 +140,7 @@ const Navbar = () => {
                 key={id}
                 onClick={() => scrollToSection(id)}
                 className={`
-                  text-[15px] font-normal relative group transition duration-300 cursor-pointer
+                  text-[15px] font-normal font-semibold relative group transition duration-300 cursor-pointer
                   ${activeSection === id ? "text-[#A30000]" : "text-white"}
                 `}
               >
@@ -148,7 +148,7 @@ const Navbar = () => {
                 <span
                   className={`
                     absolute left-1/2 -bottom-1 -translate-x-1/2 h-0.5 bg-[#A30000] rounded transition-all duration-500
-                    ${activeSection === id ? "w-6" : "w-0 group-hover:w-6"}
+                    ${activeSection === id ? "w-6" : "w-0 group-hover:w-10"}
                   `}
                 ></span>
               </button>
