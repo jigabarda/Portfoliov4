@@ -55,7 +55,7 @@ export async function GET(request: Request) {
         headers: { "Content-Type": "application/json" },
       }
     );
-  } catch (err) {
+  } catch {
     return new Response("Server Error", { status: 500 });
   }
 }

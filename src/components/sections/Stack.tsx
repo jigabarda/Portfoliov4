@@ -1,6 +1,36 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { HiOutlineBeaker } from "react-icons/hi2";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
+
+const WHITE_BG_SVGS = [
+  "https://www.svgrepo.com/show/376337/node-js.svg",
+  "https://www.svgrepo.com/show/354512/vercel.svg",
+  "https://www.svgrepo.com/show/473592/dotnet.svg",
+  "https://www.svgrepo.com/show/512317/github-142.svg",
+  "https://www.svgrepo.com/show/303232/mongodb-logo.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+];
+
+const StackIcon = ({ src }: { src: string }) => (
+  <span
+    className={`inline-flex rounded transition-transform duration-300 hover:scale-125 ${
+      WHITE_BG_SVGS.includes(src) ? "bg-white p-1" : ""
+    }`}
+  >
+    <Image
+      src={src}
+      alt="stack icon"
+      width={48}
+      height={48}
+      className="h-9 w-9 sm:h-12 sm:w-12 object-contain select-none"
+      draggable={false}
+    />
+  </span>
+);
 
 const img1 = [
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
@@ -23,8 +53,15 @@ const img1 = [
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
   "https://www.svgrepo.com/show/353622/c-sharp.svg",
   "https://www.svgrepo.com/show/303232/mongodb-logo.svg",
-  "https://www.svgrepo.com/show/373966/php.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
   "https://www.svgrepo.com/show/452091/python.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-plain-wordmark.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
 ];
 
 const img2 = [
@@ -37,7 +74,7 @@ const img2 = [
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
   "https://www.svgrepo.com/show/353622/c-sharp.svg",
   "https://www.svgrepo.com/show/303232/mongodb-logo.svg",
-  "https://www.svgrepo.com/show/373966/php.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
   "https://www.svgrepo.com/show/452091/python.svg",
   "https://www.svgrepo.com/show/331642/webflow.svg",
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
@@ -51,6 +88,13 @@ const img2 = [
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
   "https://www.svgrepo.com/show/376337/node-js.svg",
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-plain-wordmark.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
 ];
 
 const Stack = () => {
@@ -118,78 +162,37 @@ const Stack = () => {
   }, [scrollWidth2]);
 
   return (
-    <div className="flex flex-col gap-6 items-center justify-center w-full py-10">
-      {/* <h1 className="text-center p-4 font-black text-lg text-white">
-        Tech Stack
-      </h1> */}
-      <div className="overflow-hidden w-full py-2">
-        <div
-          ref={trackRef1}
-          className="flex gap-8 items-center will-change-transform min-w-max"
-        >
-          {[...img1, ...img1].map((img, i) => {
-            const whiteBgSvgs = [
-              "https://www.svgrepo.com/show/376337/node-js.svg",
-              "https://www.svgrepo.com/show/354512/vercel.svg",
-              "https://www.svgrepo.com/show/473592/dotnet.svg",
-              "https://www.svgrepo.com/show/512317/github-142.svg",
-              "https://www.svgrepo.com/show/303232/mongodb-logo.svg",
-            ];
-            const isWhiteBg = whiteBgSvgs.includes(img);
-            return (
-              <span
-                key={i}
-                className={
-                  isWhiteBg ? "bg-white p-1 inline-flex" : "inline-flex"
-                }
-              >
-                <Image
-                  src={img}
-                  alt="stack icon"
-                  width={48}
-                  height={48}
-                  className="h-12 w-12 object-contain select-none"
-                  draggable={false}
-                />
-              </span>
-            );
-          })}
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <SectionHeading
+        icon={HiOutlineBeaker}
+        title="Tech Stack"
+        subtitle="The languages, frameworks, and tools I use to ship products."
+        center
+        className="mb-10"
+      />
+
+      <Reveal className="flex flex-col gap-6 items-center justify-center w-full [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+        <div className="overflow-hidden w-full py-2">
+          <div
+            ref={trackRef1}
+            className="flex gap-5 sm:gap-8 items-center will-change-transform min-w-max"
+          >
+            {[...img1, ...img1].map((img, i) => (
+              <StackIcon key={i} src={img} />
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="overflow-hidden w-full py-2">
-        <div
-          ref={trackRef2}
-          className="flex gap-8 items-center will-change-transform min-w-max"
-        >
-          {[...img2, ...img2].map((img, i) => {
-            const whiteBgSvgs = [
-              "https://www.svgrepo.com/show/376337/node-js.svg",
-              "https://www.svgrepo.com/show/354512/vercel.svg",
-              "https://www.svgrepo.com/show/473592/dotnet.svg",
-              "https://www.svgrepo.com/show/512317/github-142.svg",
-              "https://www.svgrepo.com/show/303232/mongodb-logo.svg",
-            ];
-            const isWhiteBg = whiteBgSvgs.includes(img);
-            return (
-              <span
-                key={i}
-                className={
-                  isWhiteBg ? "bg-white p-1 inline-flex" : "inline-flex"
-                }
-              >
-                <Image
-                  src={img}
-                  alt="stack icon"
-                  width={48}
-                  height={48}
-                  className="h-12 w-12 object-contain select-none"
-                  draggable={false}
-                />
-              </span>
-            );
-          })}
+        <div className="overflow-hidden w-full py-2">
+          <div
+            ref={trackRef2}
+            className="flex gap-5 sm:gap-8 items-center will-change-transform min-w-max"
+          >
+            {[...img2, ...img2].map((img, i) => (
+              <StackIcon key={i} src={img} />
+            ))}
+          </div>
         </div>
-      </div>
+      </Reveal>
     </div>
   );
 };

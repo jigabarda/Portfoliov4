@@ -1,40 +1,42 @@
 import React from "react";
-import Navbar from "./components/Navbar";
-import Home from "./home/page";
-import Projects from "./projects/page";
-import Stack from "./stacks/page";
-import About from "./components/About";
-import Footer from "./components/Footer";
-import Services from "./services/page";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Stack from "@/components/sections/Stack";
+import Projects from "@/components/sections/Projects";
+import Services from "@/components/sections/Services";
 
 function Page() {
   return (
-    <div className="bg-[#0B0B0B] scroll-smooth">
+    <div className="bg-[#0B0B0B] scroll-smooth overflow-x-hidden">
       <Navbar />
 
-      <section id="home">
-        <Home />
-      </section>
+      <main>
+        <section id="home">
+          <Hero />
+        </section>
 
-      <section id="about">
-        <About />
-      </section>
+        <section id="about" className="scroll-mt-20">
+          <About />
+        </section>
 
-      <section id="stack">
-        <Stack />
-      </section>
+        <section id="stack" className="scroll-mt-20">
+          <Stack />
+        </section>
 
-      <section id="projects">
-        <Projects />
-      </section>
+        <section id="projects" className="scroll-mt-20">
+          <Projects />
+        </section>
 
-      <section id="services">
-        <Services />
-      </section>
+        <section id="services" className="scroll-mt-20">
+          <Services />
+        </section>
+      </main>
 
-      <section id="footer">
+      <footer id="footer">
         <Footer />
-      </section>
+      </footer>
     </div>
   );
 }
