@@ -14,6 +14,7 @@ export const projects: Project[] = [
     live: "https://sellora-world.vercel.app/",
     image: { src: "/images/sellora-mobile.png", alt: "Sellora mobile app on three phones showing the dashboard, menu, and sales reports", width: 3200, height: 2000, position: "center" },
     stack: ["Next.js", "Flutter", "Supabase", "SQLite", "React", "Recharts", "Dart", "Riverpod", "ML Kit"],
+    indexStack: ["Next.js", "Supabase", "Flutter"],
     detail: {
       overview: [
         "Sellora is a sales and inventory platform for small businesses, from retail stores to water stations and rentals. Owners record sales, track stock, log expenses, and read their numbers in one place.",
@@ -101,6 +102,7 @@ export const projects: Project[] = [
     repo: "https://github.com/jptaycs/BMS",
     image: { src: "/images/bms2.jpg", alt: "Barangay Management System dashboard with youth demographics charts", width: 2048, height: 1223, position: "center" },
     stack: ["Tauri", "React", "TypeScript", "Rust", "SQLite", "TanStack Query", "React PDF", "Tailwind CSS", "Zod"],
+    indexStack: ["Tauri", "React", "Rust"],
     detail: {
       overview: [
         "A desktop app built with Appnado IT Solutions to help local government units run their barangay offices: resident and household records, certificates, blotter reports, events, and finances in one place.",
@@ -135,6 +137,7 @@ export const projects: Project[] = [
     repo: "https://github.com/jigabarda/ProLockv5",
     image: { src: "/images/prolock.png", alt: "ProLock attendance system", width: 1728, height: 970 },
     stack: ["Python", "C#", "Raspberry Pi", "RFID"],
+    indexStack: ["Python", "C#", "Raspberry Pi", "RFID"],
   },
   {
     id: "ecommerce",

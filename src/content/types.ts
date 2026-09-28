@@ -10,6 +10,8 @@ export type Project = {
   type: string;
   /** Ordered most important first. Cards show the first 4; the index shows the first 3. */
   stack: string[];
+  /** Overrides the index "Stack" column (defaults to the first 3 of `stack`). */
+  indexStack?: string[];
   featured: boolean;
   live?: string;
   repo?: string;
