@@ -48,41 +48,49 @@ Server components by default; `"use client"` only where there is state, effects,
 ```
 src/
 ├── app/
-│   ├── layout.tsx            fonts, metadata, no-flash theme script, providers
+│   ├── layout.tsx            fonts, metadata, boot script (theme + reveal), <head>
 │   ├── page.tsx              composes the sections (server component)
-│   ├── globals.css           tokens (light + dark), Tailwind v4 @theme mapping, base + effect CSS
-│   └── actions/contact.ts    "use server" — validates and sends via Resend
+│   ├── globals.css           Tailwind import + the section stylesheets below
+│   └── actions/contact.ts    "use server": validates and sends via Resend
+├── styles/                   CSS ported from the mockup, one file per mockup section
+│                             (tokens, base, controls, nav, hero, strip, sections, projects,
+│                             services, process, about, toolkit, band, testimonial, contact, footer)
 ├── content/                  typed data, the single source for every repeated fact
-│   ├── site.ts               name, title, email, socials, CV link, location, timezone
+│   ├── types.ts
+│   ├── site.ts               name, title, email, socials, CV link, location, timezone, bio, stats
 │   ├── projects.ts           featured + index projects (drawer data lives here too)
 │   ├── experience.ts         roles, dates, summaries, details, tags
 │   ├── services.ts           six services
 │   ├── process.ts            four steps
-│   ├── stack.ts              logo tiles + grouped stack rows
+│   ├── stack.ts              grouped stack rows
+│   ├── stack-icons.ts        12 logo tiles (generated from the mockup)
 │   └── testimonials.ts       quotes with an `approved` flag
 ├── components/
-│   ├── layout/               Nav, MobileMenu, ThemeToggle, ScrollProgress, Footer
-│   ├── sections/             Hero, ExperienceStrip, Projects, ProjectIndex, Services,
-│   │                         Process, About, ExperienceTimeline, Toolkit, ServicesBand,
-│   │                         Testimonial, Contact, ContactForm
-│   ├── project/              ProjectDrawer, ProjectDrawerProvider (open from anywhere)
-│   ├── effects/              DotField (ambient canvas), TechTile (hover ripple canvas)
-│   └── ui/                   Reveal/Stagger, SectionHead, TagList (+N more), TextLink, Button
+│   ├── icons.tsx             the handful of inline SVG icons
+│   ├── layout/               Nav (client), Footer
+│   ├── sections/             Hero, LocalClock, ExperienceStrip, Projects, ProjectIndex, Services,
+│   │                         Process, About, RoleBlock, Toolkit, ServicesBand, Testimonial,
+│   │                         Contact, EmailLink, ContactForm
+│   ├── project/              ProjectDrawer (provider + drawer), OpenProjectButton
+│   ├── effects/              DotField, TechTiles (canvas, client)
+│   └── ui/                   SectionHead, TagList (+N more), RevealObserver
 └── lib/
-    ├── motion.ts             shared framer-motion variants + viewport config (once: true)
-    ├── theme.ts              read/apply/persist theme, View Transition reveal
-    ├── duration.ts           inclusive-month durations ("1 yr 4 mos")
-    └── utils.ts              cn()
+    ├── theme.ts              resolve/apply/persist theme, boot script, View Transition reveal
+    ├── duration.ts           inclusive-month durations ("1 yr 4 mos") and date labels
+    ├── tags.ts               split a tag list into shown / "+N more"
+    ├── budgets.ts            budget options (shared by form and email)
+    ├── inquiry.ts            zod schema + email formatting for the contact form
+    └── rate-limit.ts         in-memory sliding-window limiter
 ```
 
-**Dependencies:** add `resend` and `zod`; remove `three`, `@fontsource/anton`, `@fontsource/secular-one`, and `react-icons` (icons become inline SVG, fonts come from `next/font`). Everything else (`next`, `react`, `framer-motion`, `tailwindcss`, `clsx`, `tailwind-merge`) stays.
+**Dependencies:** add `resend` and `zod` (and `vitest` for tests); remove `three`, `framer-motion`, `react-icons`, `lucide-react`, `@fontsource/anton`, `@fontsource/secular-one`, `clsx`, `tailwind-merge`, `class-variance-authority`, and `tw-animate-css`. All of them are used only by the files this redesign deletes. `next`, `react`, and `tailwindcss` stay.
 
 **Why content files:** during iteration the featured cards, drawer, and index drifted apart (mismatched tags, a wrong framework, a wrong project type). Rendering all three from one `projects.ts` entry makes that class of bug impossible. Card tags are the first 4 of the project's `stack` array; "+N more" and the drawer read the same array.
 
 ## 5. Theming
 
 - Tokens are CSS custom properties copied from the mockup: bare `:root` holds the light palette; dark is defined under `@media (prefers-color-scheme: dark) :root:not([data-theme="light"])` and again under `:root[data-theme="dark"]`, with `color-scheme` set in each.
-- Tailwind v4 `@theme inline` maps tokens to utilities (`bg-bg`, `bg-bg-2`, `text-fg`, `text-fg-2`, `border-line`, `text-accent-ink`, …) so components use utilities, not hex values.
+- **Styling approach:** the mockup's CSS is already token-based and split by section, so it is ported into `src/styles/*.css` (one file per mockup section, extracted by a script) instead of being re-expressed as utility classes. This keeps the build pixel-faithful to the approved mockup. Components use the mockup's class names; colours always come from tokens, never hex values. Tailwind stays installed (its reset is the base layer) for any ad-hoc utilities.
 - A tiny inline script in `<head>` applies a saved `jigstack-theme` from `localStorage` before first paint (try/catch; no saved value → system). `<html suppressHydrationWarning>`.
 - The toggle uses `document.startViewTransition` with a circular clip reveal from the button; instant swap when unsupported or reduced motion.
 
@@ -92,17 +100,19 @@ src/
 
 ## 7. Motion
 
+The mockup's motion is CSS plus a few small browser observers, and it keeps the server-rendered HTML fully readable. The port keeps that design and drops `framer-motion`.
+
 | Effect | Implementation |
 |---|---|
-| Hero load (name rise, period drop, fade-ups) | framer-motion `initial`/`animate` with delays |
-| Scroll reveals (fade + 24px rise, once, 70ms stagger capped at 6) | `Reveal`/`Stagger` using `whileInView`, `viewport={{ once: true, margin: "0px 0px -12% 0px" }}` |
-| Project drawer slide + content stagger | `AnimatePresence`; focus trap, Esc/backdrop close, focus restore, scroll lock without layout shift |
-| Experience "Show more" | height `auto` animation via framer-motion; hidden content is `inert` when closed |
+| Hero load (name rise, period drop, fade-ups) | CSS keyframes from the mockup (runs without JS) |
+| Scroll reveals (fade + 24px rise, once, 70ms stagger capped at 6) | `.reveal` class + `RevealObserver` (IntersectionObserver adds `.is-in`). Hiding only applies when the boot script sets `html.reveal-on`, which it skips for reduced motion or missing IntersectionObserver, and removes after 4s as a failsafe |
+| Project drawer slide + content stagger | CSS transitions from the mockup, toggled by React state; focus trap, Esc/backdrop close, focus restore, scroll lock without layout shift |
+| Experience "Show more" | CSS grid-rows transition from the mockup; collapsed content is `visibility: hidden` (out of tab order and the accessibility tree) |
 | Theme reveal | View Transitions API (§5) |
 | Marquee, status ping, process line, scroll progress | CSS (`@keyframes`, `animation-timeline` where supported; static fallback) |
-| Tile ripple + ambient dot fields | `<canvas>` in client components; animate only while visible (IntersectionObserver), ~25fps for ambient, DPR capped at 2 |
+| Tile ripple + ambient dot fields | `<canvas>` in client components; animate only while visible, ~25fps for ambient, DPR capped at 2 |
 
-`<MotionConfig reducedMotion="user">` wraps the app; CSS effects have `prefers-reduced-motion` guards. Content is never left hidden if JS fails (reveals start from rendered HTML; SSR output is fully readable).
+Every effect has a `prefers-reduced-motion` path: no autonomous motion, all content visible.
 
 ## 8. Contact form (Resend)
 
