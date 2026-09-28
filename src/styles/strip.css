@@ -1,0 +1,19 @@
+/* EXPERIENCE STRIP — extracted from mockups/jigstack-redesign.html */
+
+.strip { border-block: 1px solid var(--line); }
+.strip-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 2.5rem;
+  padding-block: 1.35rem;
+}
+.strip ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 2.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.strip li { font-weight: 600; font-size: 1.02rem; letter-spacing: -0.01em; color: var(--text-2); }

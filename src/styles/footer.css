@@ -1,0 +1,26 @@
+/* FOOTER — extracted from mockups/jigstack-redesign.html */
+
+.footer { border-top: 1px solid var(--line); background: var(--bg-2); }
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding-block: 1.75rem;
+  font-size: 0.88rem;
+  color: var(--text-2);
+}
+.footer-inner p { margin: 0; }
+.footer .brand { font-size: 1.25rem; }
+.footer a:not(.brand) { color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+.footer a:not(.brand):hover { color: var(--text); }
+
+/* Theme switch: circular reveal via View Transitions where supported. */
+::view-transition-old(root),
+::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .dot::after { animation: none; }
+}
