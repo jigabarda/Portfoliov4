@@ -1,0 +1,46 @@
+import type { Role } from "./types";
+
+export const experience: Role[] = [
+  {
+    id: "lead",
+    mark: "LM",
+    org: "LEAD Management Pte Ltd",
+    role: "Software Engineer",
+    start: "2025-12",
+    summary: "Led development of internal microservices at LEAD, including the enterprise and CRM services that support the company's day-to-day operations.",
+    more: "Owned these services from design to deployment: planning service boundaries and APIs, reviewing code, and shipping releases on Docker and AWS. Also built the company's employee management app, giving teams one place to manage staff records and workflows.",
+    tags: ["Ruby on Rails", "React", "Flutter", "PostgreSQL", "Docker", "AWS"],
+  },
+  {
+    id: "appnado",
+    mark: "AP",
+    org: "Appnado IT Solutions",
+    role: "Full Stack Developer",
+    start: "2025-06",
+    summary: "Led project development and owned the system architecture across Appnado's client builds, from choosing the stack to structuring services and data models.",
+    more: "Delivered a Barangay Management System for local government units that moved certificate processing off paper, reduced errors, and gave officials real-time dashboards. Worked closely with stakeholders to turn manual government workflows into software their staff could adopt quickly.",
+    tags: ["Go", "Next.js", "React", "Flutter", "PostgreSQL", "Clerk"],
+  },
+  {
+    id: "pru",
+    mark: "PRU",
+    org: "Pru Life UK",
+    role: "Full Stack Web Developer Intern",
+    start: "2025-03",
+    end: "2025-06",
+    summary: "Led development of a website for a Pru Life UK advisor, where their clients can request insurance quotes and book appointments.",
+    more: "Built and managed the backend features behind it, handling quote submissions and appointment scheduling end to end, and kept the site maintained through the rest of the internship.",
+    tags: ["Next.js", "React", "Tailwind CSS", "PostgreSQL", "Web3Forms"],
+  },
+  {
+    id: "freelance",
+    mark: "FL",
+    org: "Self-employed",
+    role: "Freelance Developer",
+    start: "2023-11",
+    end: "2025-11",
+    summary: "Designed, built, and shipped web and mobile apps end to end, for clients and as my own products.",
+    more: "Handled every stage myself: scoping requirements with clients, designing the interface, building the frontend and backend, and deploying to production. Work from this period includes an e-commerce app and a resort reservation app.",
+    tags: ["Next.js", "React Native", "Flutter", "Firebase", "PostgreSQL", "Go"],
+  },
+];
