@@ -33,6 +33,8 @@ export default function ContactForm() {
       ref={formRef}
       className="form"
       id="contact-form"
+      // POST, so a submit before hydration never puts the visitor's details in the URL or history.
+      method="post"
       onSubmit={(e) => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
