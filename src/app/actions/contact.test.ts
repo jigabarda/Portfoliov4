@@ -72,6 +72,16 @@ describe("sendInquiry", () => {
     expect((await sendInquiry(idle, form())).status).toBe("error");
   });
 
+  it("does not count rejected submissions against the rate limit", async () => {
+    for (let i = 0; i < 5; i++) expect((await sendInquiry(idle, form({ email: "jane@company" }))).status).toBe("error");
+    expect((await sendInquiry(idle, form())).status).toBe("success");
+  });
+
+  it("tells a rate-limited visitor how to reach me directly", async () => {
+    for (let i = 0; i < 5; i++) await sendInquiry(idle, form());
+    expect((await sendInquiry(idle, form())).message).toMatch(/jamesivangabarda8@gmail\.com/);
+  });
+
   it("rate-limits repeated submissions from one connection", async () => {
     for (let i = 0; i < 5; i++) expect((await sendInquiry(idle, form())).status).toBe("success");
     const blocked = await sendInquiry(idle, form());
