@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown } from "@/components/icons";
 import TagList from "@/components/ui/TagList";
 import type { Role } from "@/content/types";
-import { formatRange, roleDuration } from "@/lib/duration";
+import { formatRange, safeRoleDuration } from "@/lib/duration";
 
 /**
  * Role, dates, summary, collapsible detail, and tags.
@@ -16,8 +16,8 @@ export default function RoleBlock({ role, initialDuration }: { role: Role; initi
   const panelId = `xp-more-${role.id}`;
 
   useEffect(() => {
-    if (!role.end) setDuration(roleDuration(role.start));
-  }, [role.start, role.end]);
+    if (!role.end) setDuration(safeRoleDuration(role.start, undefined, initialDuration));
+  }, [role.start, role.end, initialDuration]);
 
   return (
     <div className="xp-roleblock">

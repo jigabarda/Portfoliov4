@@ -35,6 +35,19 @@ export function roleDuration(start: string, end?: string, now: Date = new Date()
   return formatDuration(monthsInclusive(start, end ?? toYearMonth(now)));
 }
 
+/**
+ * Browser-side variant: a visitor's clock can sit before a role's start month (time zones,
+ * wrong device clocks), so fall back to the server-rendered value instead of throwing.
+ * The strict `roleDuration` still fails loudly at build and test time.
+ */
+export function safeRoleDuration(start: string, end: string | undefined, fallback: string, now: Date = new Date()): string {
+  try {
+    return roleDuration(start, end, now);
+  } catch {
+    return fallback;
+  }
+}
+
 export function formatMonth(ym: string): string {
   const { y, m } = parseYearMonth(ym);
   return `${MONTHS[m - 1]} ${y}`;

@@ -1,5 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { formatDuration, formatMonth, formatRange, monthsInclusive, parseYearMonth, roleDuration, toYearMonth } from "./duration";
+import { formatDuration, formatMonth, formatRange, monthsInclusive, parseYearMonth, roleDuration, safeRoleDuration, toYearMonth } from "./duration";
+
+describe("safeRoleDuration (browser-side)", () => {
+  it("returns the fallback instead of throwing when the visitor's clock is before the start month", () => {
+    expect(safeRoleDuration("2026-10", undefined, "1 mo", new Date(2026, 8, 30))).toBe("1 mo");
+  });
+  it("computes normally when the dates are valid", () => {
+    expect(safeRoleDuration("2025-12", undefined, "fallback", new Date(2026, 8, 28))).toBe("10 mos");
+  });
+});
 
 describe("monthsInclusive", () => {
   it("counts both the start and end month, like LinkedIn", () => {
