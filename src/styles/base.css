@@ -1,0 +1,55 @@
+/* BASE — extracted from mockups/jigstack-redesign.html */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+img { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
+a { color: inherit; }
+::selection { background: var(--accent-btn); color: var(--on-accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.wrap {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.kicker {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+/* Section labels are the literal URL fragment, e.g. "#projects". */
+.label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  color: var(--text-2);
+}
+.label b { color: var(--accent-ink); font-weight: 500; }
+
+/* Tailwind's reset makes buttons inherit the body line-height; the mockup relies on the browser default. */
+button { line-height: normal; }

@@ -1,0 +1,99 @@
+/* TOKENS: light palette on bare :root, dark redefined twice — extracted from mockups/jigstack-redesign.html */
+
+:root {
+  color-scheme: light;
+  --bg: #E4E1DF;
+  --bg-2: #D9D5D3;
+  --line: #CCC7C5;
+  --line-2: #B5AEAC;
+  --text: #131010;
+  --text-2: #5F5858;
+  --accent: #C8242B;       /* large type, marks, fills */
+  --accent-ink: #B3141C;   /* small accent text: 5.3:1 on --bg */
+  --accent-btn: #B3141C;
+  --on-accent: #FFFFFF;
+  --nav-bg: rgba(228, 225, 223, 0.82);
+  --preview-shadow: 0 28px 60px -24px rgba(60, 0, 0, 0.38);
+  --sun: none;
+  --moon: block;
+  --img-filter: brightness(1);
+  --brand-shade: 22%;
+  --tile-line: var(--line);
+  --tile-fill: color-mix(in oklab, var(--text-2) 75%, var(--bg));
+  --tile-stroke: transparent;
+  --dot-size: 2;
+  --dot-alpha: 1.6;
+  --tile-tint: 7%;
+  --dotfield-alpha: 0.26;
+
+  --font-display: var(--font-anton), Impact, "Arial Narrow Bold", sans-serif;
+  --font-body: var(--font-geist), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --gutter: clamp(16px, 4vw, 40px);
+  --section-y: clamp(4rem, 8vw, 6.5rem);
+
+  --t-sm: 0.875rem;
+  --t-lg: 1.125rem;
+  --t-xl: clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem);
+  --t-2xl: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem);
+  --t-display: clamp(3rem, 1.6rem + 6vw, 6.5rem);
+  --t-hero: clamp(3.6rem, 17.5vw, 13.5rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0B0A0A;
+    --bg-2: #151212;
+    --line: #262121;
+    --line-2: #3B3434;
+    --text: #F4F1F1;
+    --text-2: #A39B9B;
+    --accent: #D8393B;
+    --accent-ink: #E5585A;
+    --accent-btn: #D8393B;
+    --on-accent: #FFFFFF;
+    --nav-bg: rgba(11, 10, 10, 0.78);
+    --preview-shadow: 0 28px 70px -20px rgba(0, 0, 0, 0.85);
+    --sun: block;
+    --moon: none;
+    --img-filter: brightness(0.86);
+    --brand-shade: 0%;
+    --tile-line: var(--line-2);
+    --tile-fill: transparent;
+    --tile-stroke: var(--text-2);
+    --dot-size: 1.6;
+    --dot-alpha: 1;
+    --tile-tint: 0%;
+    --dotfield-alpha: 0.34;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0B0A0A;
+  --bg-2: #151212;
+  --line: #262121;
+  --line-2: #3B3434;
+  --text: #F4F1F1;
+  --text-2: #A39B9B;
+  --accent: #D8393B;
+  --accent-ink: #E5585A;
+  --accent-btn: #D8393B;
+  --on-accent: #FFFFFF;
+  --nav-bg: rgba(11, 10, 10, 0.78);
+  --preview-shadow: 0 28px 70px -20px rgba(0, 0, 0, 0.85);
+  --sun: block;
+  --moon: none;
+  --img-filter: brightness(0.86);
+  --brand-shade: 0%;
+  --tile-line: var(--line-2);
+  --tile-fill: transparent;
+  --tile-stroke: var(--text-2);
+  --dot-size: 1.6;
+  --dot-alpha: 1;
+  --tile-tint: 0%;
+  --dotfield-alpha: 0.34;
+}

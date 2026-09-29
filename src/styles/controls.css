@@ -1,0 +1,55 @@
+/* BUTTONS & LINKS — extracted from mockups/jigstack-redesign.html */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 48px;
+  padding-inline: 1.4rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font: 600 0.95rem/1 var(--font-body);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.3s var(--ease-out), background-color 0.25s, border-color 0.25s, color 0.25s;
+}
+.btn svg { transition: transform 0.3s var(--ease-out); }
+.btn:hover svg { transform: translateX(3px); }
+.btn-primary { background: var(--accent-btn); color: var(--on-accent); }
+.btn-primary:hover { transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--text); border-color: var(--line-2); }
+.btn-ghost:hover { border-color: var(--text); }
+.btn-sm { height: 38px; padding-inline: 1rem; font-size: 0.85rem; }
+
+.text-link {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--line-2);
+  transition: color 0.2s, border-color 0.2s;
+}
+.text-link:hover { color: var(--accent-ink); border-color: var(--accent); }
+.text-link svg { transition: transform 0.3s var(--ease-out); }
+.text-link:hover svg { transform: translate(2px, -2px); }
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.3s var(--ease-out);
+}
+.icon-btn:hover { border-color: var(--text); }
+.icon-btn:active { transform: scale(0.94); }
+.i-sun { display: var(--sun); }
+.i-moon { display: var(--moon); }

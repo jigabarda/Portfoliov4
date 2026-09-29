@@ -1,0 +1,115 @@
+/* CONTACT — extracted from mockups/jigstack-redesign.html */
+
+.contact { background: var(--bg-2); }
+.contact-title {
+  margin: 1rem 0 clamp(2.5rem, 6vw, 4.5rem);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3.2rem, 12vw, 10rem);
+  line-height: 0.88;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+}
+.contact-info { display: grid; gap: 2.5rem; align-content: start; }
+.contact-info > div { display: grid; gap: 0.6rem; }
+.email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem; }
+.email {
+  font-size: clamp(1.25rem, 1rem + 1.2vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+.note { margin: 0; color: var(--text-2); font-size: 0.95rem; }
+.email-link {
+  justify-self: start;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--line-2);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+.email-link:hover { color: var(--accent-ink); text-decoration-color: var(--accent); }
+.copied-note {
+  margin: 0;
+  min-height: 1.2em;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-ink);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.copied-note.is-on { opacity: 1; }
+.socials { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; margin: 0; padding: 0; list-style: none; }
+
+.form { display: grid; gap: 1.6rem; }
+.form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.6rem; }
+.field { display: grid; gap: 0.35rem; }
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 0.7rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--line-2);
+  border-radius: 0;
+  background: transparent;
+  color: var(--text);
+  font: 400 1.02rem/1.4 var(--font-body);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.field textarea { min-height: 7.5rem; resize: vertical; }
+.field input::placeholder,
+.field textarea::placeholder { color: var(--text-2); opacity: 0.7; }
+.field input:focus,
+.field select:focus,
+.field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 1px 0 var(--accent); }
+/* Pill choices: real radio inputs, styled as toggles. */
+.choice { min-width: 0; margin: 0; padding: 0; border: 0; }
+.choice legend { padding: 0; margin-bottom: 0.7rem; }
+.pills { position: relative; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.pills input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.pills label {
+  display: inline-flex;
+  align-items: center;
+  height: 38px;
+  padding-inline: 1rem;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+.pills label:hover { border-color: var(--text); color: var(--text); }
+.pills input:checked + label { background: var(--text); border-color: var(--text); color: var(--bg); }
+.pills input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+
+.req { margin-left: 0.25rem; color: var(--accent-ink); }
+.form-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
+.form-note {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-left: 2px solid var(--accent);
+  background: var(--bg);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
+
+/* Form states (not in the mockup: its form was a visual prototype). */
+.field { align-content: start; } /* an error under one field must not stretch its neighbour */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.field-error { margin: 0; font-size: 0.8rem; color: var(--accent-ink); }
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] { border-color: var(--accent); }
+.btn[disabled] { opacity: 0.6; cursor: progress; transform: none; }

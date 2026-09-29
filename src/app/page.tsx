@@ -1,42 +1,37 @@
-import React from "react";
-import Navbar from "./components/Navbar";
-import Home from "./home/page";
-import Projects from "./projects/page";
-import Stack from "./stacks/page";
-import About from "./components/About";
-import Footer from "./components/Footer";
-import Services from "./services/page";
+import Footer from "@/components/layout/Footer";
+import Nav from "@/components/layout/Nav";
+import { ProjectDrawerProvider } from "@/components/project/ProjectDrawer";
+import About from "@/components/sections/About";
+import Contact from "@/components/sections/Contact";
+import ExperienceStrip from "@/components/sections/ExperienceStrip";
+import Hero from "@/components/sections/Hero";
+import Process from "@/components/sections/Process";
+import Projects from "@/components/sections/Projects";
+import Services from "@/components/sections/Services";
+import ServicesBand from "@/components/sections/ServicesBand";
+import Testimonial from "@/components/sections/Testimonial";
+import Toolkit from "@/components/sections/Toolkit";
+import RevealObserver from "@/components/ui/RevealObserver";
+import { featuredProjects } from "@/content/projects";
 
-function Page() {
+export default function Page() {
   return (
-    <div className="bg-[#0B0B0B] scroll-smooth">
-      <Navbar />
-
-      <section id="home">
-        <Home />
-      </section>
-
-      <section id="about">
-        <About />
-      </section>
-
-      <section id="stack">
-        <Stack />
-      </section>
-
-      <section id="projects">
+    <ProjectDrawerProvider projects={featuredProjects}>
+      <Nav />
+      <main>
+        <Hero />
+        <ExperienceStrip />
         <Projects />
-      </section>
-
-      <section id="services">
         <Services />
-      </section>
-
-      <section id="footer">
-        <Footer />
-      </section>
-    </div>
+        <Process />
+        <About />
+        <Toolkit />
+        <ServicesBand />
+        <Testimonial />
+        <Contact />
+      </main>
+      <Footer />
+      <RevealObserver />
+    </ProjectDrawerProvider>
   );
 }
-
-export default Page;

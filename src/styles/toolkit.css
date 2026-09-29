@@ -1,0 +1,93 @@
+/* STACK — extracted from mockups/jigstack-redesign.html */
+
+/* Logo tiles: outline at rest; brand color, name and a twinkling
+   dot field on hover. The dots are drawn on <canvas> by the script. */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0 0 clamp(3rem, 7vw, 5rem);
+  padding: 0;
+  list-style: none;
+  background: var(--tile-line);
+  border: 1px solid var(--tile-line);
+}
+.tile {
+  --c: color-mix(in oklab, var(--brand), #000 var(--brand-shade));
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  max-width: 100%;
+  background: var(--bg);
+  transition: background-color 0.4s var(--ease-out);
+}
+.tile:hover { background: color-mix(in oklab, var(--c) var(--tile-tint), var(--bg)); }
+.tile-dots {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--c);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s var(--ease-out);
+}
+.tile-logo {
+  position: relative;
+  z-index: 1;
+  width: clamp(30px, 2.6vw, 40px);
+  height: auto;
+  fill: var(--tile-fill);
+  stroke: var(--tile-stroke);
+  stroke-width: 1;
+  transition: fill 0.4s var(--ease-out), stroke 0.4s, transform 0.5s var(--ease-out);
+}
+.tile-logo path { vector-effect: non-scaling-stroke; }
+.tile-name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(50% + 18px);
+  z-index: 1;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s, transform 0.5s var(--ease-out);
+}
+.tile:hover .tile-dots { opacity: 1; transition-duration: 0.1s; }
+.tile:hover .tile-logo { fill: var(--c); stroke: transparent; transform: translateY(-14px); }
+.tile:hover .tile-name { opacity: 1; transform: none; }
+
+/* Touch screens have no hover: show the colored logo and name directly. */
+@media (hover: none) {
+  .tile-logo { fill: var(--c); stroke: transparent; transform: translateY(-14px); }
+  .tile-name { opacity: 1; transform: none; }
+}
+@media (max-width: 1023px) { .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(2rem, 5vw, 5rem);
+  margin: 0;
+}
+.stack-row {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  gap: 0.5rem 1.25rem;
+  padding-block: 1.15rem;
+  border-bottom: 1px solid var(--line);
+}
+.stack-row dt { padding-top: 0.2rem; }
+.stack-row dd { margin: 0; }
+.stack-row ul { display: flex; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; font-weight: 500; }
+.stack-row li:not(:last-child)::after { content: "/"; margin-inline: 0.55rem; color: var(--line-2); font-weight: 400; }
+
+@media (max-width: 860px) { .stack-grid { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .stack-row { grid-template-columns: 1fr; } }
