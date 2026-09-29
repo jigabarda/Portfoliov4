@@ -45,6 +45,8 @@ export function ProjectDrawerProvider({ projects, children }: { projects: Projec
   );
 
   const close = useCallback((focusTarget?: HTMLElement | null) => {
+    // A second close (e.g. Esc twice) must not leave an older hide timer behind to fire mid-reopen.
+    window.clearTimeout(hideTimer.current);
     setIsOpen(false);
     document.documentElement.style.overflow = "";
     document.body.style.paddingRight = "";
