@@ -88,7 +88,10 @@ export function ProjectDrawerProvider({ projects, children }: { projects: Projec
   const startProject = () => {
     const field = document.getElementById("cf-project") as HTMLInputElement | null;
     if (current && field && !field.value) field.value = `Something like ${current.title}`;
-    close(document.getElementById("cf-name"));
+    const name = document.getElementById("cf-name");
+    close(name);
+    // The link's own jump to #contact runs after this handler and resets focus, so focus again once it has.
+    window.setTimeout(() => name?.focus({ preventScroll: true }), 0);
   };
 
   return (

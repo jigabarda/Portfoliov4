@@ -105,3 +105,11 @@
 
 @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
 @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
+
+/* Form states (not in the mockup: its form was a visual prototype). */
+.field { align-content: start; } /* an error under one field must not stretch its neighbour */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.field-error { margin: 0; font-size: 0.8rem; color: var(--accent-ink); }
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] { border-color: var(--accent); }
+.btn[disabled] { opacity: 0.6; cursor: progress; transform: none; }
