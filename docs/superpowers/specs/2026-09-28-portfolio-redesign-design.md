@@ -137,7 +137,7 @@ Every effect has a `prefers-reduced-motion` path: no autonomous motion, all cont
 
 - **Testimonial:** the LGU quote is a draft. `testimonials.ts` entries carry `approved: boolean`; the section renders only approved quotes and is omitted entirely when there are none. The draft ships with `approved: false`.
 - **Unconfirmed phrases** kept as the mockup has them, flagged for the user in the PR description: BMS "works without an internet connection", Sellora "Notebook Capture" wording, Pru Life "kept the site maintained…".
-- **Nav CTA label:** ships as "Hire me" (as in the mockup). "Start a project" was discussed as an alternative; a one-word change in `site.ts` if chosen.
+- **Nav CTA label:** "Hire me" (confirmed by the owner on 2026-09-28).
 - Mockup-only affordances do not ship: placeholder tags, "Add number" chips, the mockup's fake form confirmation.
 
 ## 11. Removals
