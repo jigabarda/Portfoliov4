@@ -10,7 +10,8 @@ export default function ProjectIndex({ projects }: { projects: Project[] }) {
         <h3>Projects at a glance</h3>
       </div>
 
-      <div className="index" role="list">
+      {/* Rows stay plain links: role="listitem" would hide them from screen readers' links list. */}
+      <div className="index">
         <div className="index-head" aria-hidden="true">
           <span />
           <span className="kicker">Year</span>
@@ -23,7 +24,7 @@ export default function ProjectIndex({ projects }: { projects: Project[] }) {
         {projects.map((p) => {
           const href = p.live ?? p.repo;
           return (
-            <a key={p.id} className="index-row reveal" role="listitem" href={href} target="_blank" rel="noopener noreferrer">
+            <a key={p.id} className="index-row reveal" href={href} target="_blank" rel="noopener noreferrer">
               {p.image ? (
                 <span className="ix-thumb"><Image src={p.image.src} alt="" width={176} height={110} /></span>
               ) : (
