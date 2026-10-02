@@ -6,14 +6,14 @@ export function isTheme(value: unknown): value is Theme {
   return value === "light" || value === "dark";
 }
 
-export function resolveTheme(saved: string | null, prefersDark: boolean): Theme {
-  if (isTheme(saved)) return saved;
-  return prefersDark ? "dark" : "light";
+/** Dark is the default; light only when the visitor has chosen it. */
+export function resolveTheme(saved: string | null): Theme {
+  return isTheme(saved) ? saved : "dark";
 }
 
 /**
  * Runs in <head> before first paint:
- * 1. applies a saved theme (no saved value = follow the OS via CSS),
+ * 1. applies a saved theme (no saved value = dark, the CSS default),
  * 2. enables scroll-reveal hiding only when motion is allowed, with a 4s failsafe.
  * Kept as a plain string so it can be inlined and unit-tested.
  */
@@ -21,7 +21,7 @@ export const BOOT_SCRIPT = `(function(){var d=document.documentElement;try{var t
 
 export function currentTheme(): Theme {
   const attr = document.documentElement.getAttribute("data-theme");
-  return resolveTheme(attr, matchMedia("(prefers-color-scheme: dark)").matches);
+  return resolveTheme(attr);
 }
 
 type ViewTransitionDoc = Document & {

@@ -35,12 +35,12 @@ function fakeBrowser(opts: { saved?: string | null; storageThrows?: boolean; red
 
 describe("resolveTheme", () => {
   it("uses a valid saved theme", () => {
-    expect(resolveTheme("light", true)).toBe("light");
-    expect(resolveTheme("dark", false)).toBe("dark");
+    expect(resolveTheme("light")).toBe("light");
+    expect(resolveTheme("dark")).toBe("dark");
   });
-  it("falls back to the system preference", () => {
-    expect(resolveTheme(null, true)).toBe("dark");
-    expect(resolveTheme("purple", false)).toBe("light");
+  it("defaults to dark when nothing valid is saved", () => {
+    expect(resolveTheme(null)).toBe("dark");
+    expect(resolveTheme("purple")).toBe("dark");
   });
 });
 

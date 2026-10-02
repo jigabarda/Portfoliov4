@@ -671,7 +671,6 @@ export const site = {
   name: "James Ivan Gabarda",
   brand: "JIGSTACK",
   email: "jamesivangabarda8@gmail.com",
-  cvUrl: "https://drive.google.com/file/d/1v-GBqVPGlbKYV-sEwNu10gzNxMgTdDFS/view",
   githubUrl: "https://github.com/jigabarda",
   status: "Available for new projects",
   heroLede: "I design and build fast, reliable web and mobile products, from the first sketch to launch day.",
@@ -828,7 +827,7 @@ export const projects: Project[] = [
     detail: {
       overview: [
         "A desktop app built with Appnado IT Solutions to help local government units run their barangay offices: resident and household records, certificates, blotter reports, events, and finances in one place.",
-        "Built by a three-person team on Tauri, with a React and TypeScript interface and a Rust backend that stores everything in a local SQLite database, so records stay on the office computer and the app works without an internet connection.",
+        "Built on Tauri, with a React and TypeScript interface and a Rust backend that stores everything in a local SQLite database, so records stay on the office computer and the app works without an internet connection.",
       ],
       features: [
         "Resident and household records with search and bulk actions",
@@ -1501,7 +1500,6 @@ export default function Hero() {
             <a className="btn btn-primary" href="#contact">Start a project <ArrowRight /></a>
             <a className="btn btn-ghost" href="#projects">See my work</a>
           </div>
-          <a className="text-link" href={site.cvUrl} target="_blank" rel="noopener noreferrer">View CV <ArrowUpRight /></a>
         </div>
       </div>
     </section>

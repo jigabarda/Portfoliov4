@@ -1,4 +1,4 @@
-/* TOKENS: light palette on bare :root, dark redefined twice — extracted from mockups/jigstack-redesign.html */
+/* TOKENS: light palette on bare :root, dark applied unless the visitor chose light — extracted from mockups/jigstack-redesign.html */
 
 :root {
   color-scheme: light;
@@ -42,36 +42,7 @@
   --t-hero: clamp(3.6rem, 17.5vw, 13.5rem);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bg: #0B0A0A;
-    --bg-2: #151212;
-    --line: #262121;
-    --line-2: #3B3434;
-    --text: #F4F1F1;
-    --text-2: #A39B9B;
-    --accent: #D8393B;
-    --accent-ink: #E5585A;
-    --accent-btn: #D8393B;
-    --on-accent: #FFFFFF;
-    --nav-bg: rgba(11, 10, 10, 0.78);
-    --preview-shadow: 0 28px 70px -20px rgba(0, 0, 0, 0.85);
-    --sun: block;
-    --moon: none;
-    --img-filter: brightness(0.86);
-    --brand-shade: 0%;
-    --tile-line: var(--line-2);
-    --tile-fill: transparent;
-    --tile-stroke: var(--text-2);
-    --dot-size: 1.6;
-    --dot-alpha: 1;
-    --tile-tint: 0%;
-    --dotfield-alpha: 0.34;
-  }
-}
-
-:root[data-theme="dark"] {
+:root:not([data-theme="light"]) {
   color-scheme: dark;
   --bg: #0B0A0A;
   --bg-2: #151212;

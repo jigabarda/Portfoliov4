@@ -273,8 +273,9 @@ button.feature-media { width: 100%; padding: 0; font: inherit; color: inherit; c
   transform: translateY(-50%);
   transition: width 0.4s var(--ease-out);
 }
-a.index-row:hover { padding-left: 1.6rem; }
-a.index-row:hover::before { width: 1rem; }
+/* Private rows (plain divs) get the same hover so the list feels uniform; only links get the pointer. */
+.index-row:hover { padding-left: 1.6rem; }
+.index-row:hover::before { width: 1rem; }
 .ix-year { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-2); font-variant-numeric: tabular-nums; }
 .ix-name { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.015em; }
 .ix-type, .ix-stack { font-size: 0.88rem; color: var(--text-2); }
@@ -289,7 +290,7 @@ a.index-row:hover::before { width: 1rem; }
   transition: color 0.2s;
 }
 .ix-go svg { transition: transform 0.3s var(--ease-out); }
-a.index-row:hover .ix-go { color: var(--accent-ink); }
+.index-row:hover .ix-go { color: var(--accent-ink); }
 a.index-row:hover .ix-go svg { transform: translate(2px, -2px); }
 
 @media (max-width: 760px) {

@@ -8,9 +8,18 @@ import { techTiles } from "./stack-icons";
 import { testimonials } from "./testimonials";
 
 describe("projects", () => {
-  it("have unique ids and at least one link each", () => {
+  it("have unique ids, and every public project has a link", () => {
     expect(new Set(projects.map((p) => p.id)).size).toBe(projects.length);
-    for (const p of projects) expect(p.live ?? p.repo, p.id).toBeTruthy();
+    for (const p of projects.filter((p) => !p.private)) expect(p.live ?? p.repo, p.id).toBeTruthy();
+  });
+
+  it("keep private projects' links out of the site entirely", () => {
+    const priv = projects.filter((p) => p.private);
+    expect(priv.map((p) => p.id).sort()).toEqual(["bms", "ecommerce", "prolock"]);
+    for (const p of priv) {
+      expect(p.repo, p.id).toBeUndefined();
+      expect(p.live, p.id).toBeUndefined();
+    }
   });
 
   it("featured projects carry everything the card and drawer render", () => {

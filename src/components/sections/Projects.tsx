@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight } from "@/components/icons";
+import { ArrowUpRight } from "@/components/icons";
 import OpenProjectButton from "@/components/project/OpenProjectButton";
 import SectionHead from "@/components/ui/SectionHead";
 import { featuredProjects, projects } from "@/content/projects";
@@ -40,7 +40,7 @@ function FeaturedProject({ project: p }: { project: Project }) {
           ) : null}
         </ul>
         <div className="feature-actions">
-          <OpenProjectButton projectId={p.id} className="text-link view-project">View project <ArrowRight /></OpenProjectButton>
+          <OpenProjectButton projectId={p.id} className="text-link view-project">View project <ArrowUpRight /></OpenProjectButton>
           {p.live ? (
             <a className="text-link" href={p.live} target="_blank" rel="noopener noreferrer">Live site <ArrowUpRight /></a>
           ) : null}
