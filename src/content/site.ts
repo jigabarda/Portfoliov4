@@ -6,7 +6,6 @@ export const site = {
   name: "James Ivan Gabarda",
   brand: "JIGSTACK",
   email: "jamesivangabarda8@gmail.com",
-  cvUrl: "https://drive.google.com/file/d/1v-GBqVPGlbKYV-sEwNu10gzNxMgTdDFS/view",
   githubUrl: "https://github.com/jigabarda",
   status: "Available for new projects",
   heroLede: "I design and build fast, reliable web and mobile products, from the first sketch to launch day.",

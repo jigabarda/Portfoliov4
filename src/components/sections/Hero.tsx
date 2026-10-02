@@ -1,5 +1,5 @@
 import DotField from "@/components/effects/DotField";
-import { ArrowRight, ArrowUpRight } from "@/components/icons";
+import { ArrowRight } from "@/components/icons";
 import { site } from "@/content/site";
 import LocalClock from "./LocalClock";
 
@@ -30,7 +30,6 @@ export default function Hero() {
             <a className="btn btn-primary" href="#contact">Start a project <ArrowRight /></a>
             <a className="btn btn-ghost" href="#projects">See my work</a>
           </div>
-          <a className="text-link" href={site.cvUrl} target="_blank" rel="noopener noreferrer">View CV <ArrowUpRight /></a>
         </div>
       </div>
     </section>
