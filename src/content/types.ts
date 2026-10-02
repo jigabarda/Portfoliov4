@@ -15,6 +15,8 @@ export type Project = {
   featured: boolean;
   live?: string;
   repo?: string;
+  /** No public links: the index shows "Private" and the row is not clickable. */
+  private?: boolean;
   image?: ProjectImage;
   /** Shown in the index thumbnail when there is no image. */
   thumbInitials?: string;

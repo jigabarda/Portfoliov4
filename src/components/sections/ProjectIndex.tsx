@@ -22,9 +22,8 @@ export default function ProjectIndex({ projects }: { projects: Project[] }) {
         </div>
 
         {projects.map((p) => {
-          const href = p.live ?? p.repo;
-          return (
-            <a key={p.id} className="index-row reveal" href={href} target="_blank" rel="noopener noreferrer">
+          const cells = (
+            <>
               {p.image ? (
                 <span className="ix-thumb"><Image src={p.image.src} alt="" width={176} height={110} /></span>
               ) : (
@@ -34,6 +33,19 @@ export default function ProjectIndex({ projects }: { projects: Project[] }) {
               <span className="ix-name">{p.title}</span>
               <span className="ix-type">{p.type}</span>
               <span className="ix-stack">{(p.indexStack ?? p.stack.slice(0, 3)).join(", ")}</span>
+            </>
+          );
+          if (p.private) {
+            return (
+              <div key={p.id} className="index-row reveal">
+                {cells}
+                <span className="ix-go">Private</span>
+              </div>
+            );
+          }
+          return (
+            <a key={p.id} className="index-row reveal" href={p.live ?? p.repo} target="_blank" rel="noopener noreferrer">
+              {cells}
               <span className="ix-go">{p.live ? "Live" : "Code"} <ArrowUpRight size={12} /></span>
             </a>
           );
