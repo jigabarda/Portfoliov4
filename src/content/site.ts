@@ -16,6 +16,7 @@ export const site = {
   now: "Software Engineer, LEAD Management Pte Ltd",
   focus: "Web, mobile & AI products",
   navCta: "Hire me",
+  education: { degree: "BS Information Technology", school: "Camarines Sur Polytechnic Colleges", year: "2025" },
   employers: ["LEAD Management Pte Ltd", "Appnado IT Solutions", "Pru Life UK", "Independent clients"],
   bio: [
     "I'm a software engineer based in Bicol, Philippines. I build web, mobile, and AI products end to end, from the database schema to the last pixel of the interface.",

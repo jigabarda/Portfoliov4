@@ -16,7 +16,11 @@ export default function About() {
             <div className="frame">
               <Image src="/images/profile2.jpg" alt={`Portrait of ${site.name}`} width={1462} height={1425} sizes="(max-width: 860px) 22rem, 33vw" />
             </div>
-            <figcaption className="kicker">{site.name} · {site.location}</figcaption>
+            <figcaption className="kicker">
+              <span>{site.name} · {site.location}</span>
+              <span>{site.education.degree} · {site.education.year}</span>
+              <span>{site.education.school}</span>
+            </figcaption>
           </figure>
 
           <div className="about-body">

@@ -17,7 +17,8 @@
   transition: filter 0.7s var(--ease-out), transform 0.9s var(--ease-out);
 }
 .about-photo:hover img { filter: grayscale(0) contrast(1); transform: scale(1.02); }
-.about-photo figcaption { margin-top: 0.8rem; }
+.about-photo figcaption { margin-top: 0.8rem; display: grid; gap: 0.35rem; line-height: 1.5; }
+.about-photo figcaption span + span { color: color-mix(in oklab, var(--text-2) 80%, var(--bg)); }
 .about-body { grid-column: 5 / span 8; }
 
 .bio { display: grid; gap: 1.1rem; max-width: 62ch; }
