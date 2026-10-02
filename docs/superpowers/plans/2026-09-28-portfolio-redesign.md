@@ -671,7 +671,6 @@ export const site = {
   name: "James Ivan Gabarda",
   brand: "JIGSTACK",
   email: "jamesivangabarda8@gmail.com",
-  cvUrl: "https://drive.google.com/file/d/1v-GBqVPGlbKYV-sEwNu10gzNxMgTdDFS/view",
   githubUrl: "https://github.com/jigabarda",
   status: "Available for new projects",
   heroLede: "I design and build fast, reliable web and mobile products, from the first sketch to launch day.",
@@ -1501,7 +1500,6 @@ export default function Hero() {
             <a className="btn btn-primary" href="#contact">Start a project <ArrowRight /></a>
             <a className="btn btn-ghost" href="#projects">See my work</a>
           </div>
-          <a className="text-link" href={site.cvUrl} target="_blank" rel="noopener noreferrer">View CV <ArrowUpRight /></a>
         </div>
       </div>
     </section>
