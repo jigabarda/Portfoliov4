@@ -23,11 +23,11 @@ export const site = {
     "Right now I'm a Software Engineer at LEAD Management Pte Ltd and a Full Stack Developer at Appnado IT Solutions, and I take on freelance projects on the side.",
   ],
   stats: [
+    { label: "Years of experience", value: "3+" },
     { label: "Projects completed", value: "10+" },
-    { label: "Writing code since", value: "2019" },
     { label: "Platforms: web, mobile, desktop, IoT", value: "4" },
   ],
-  experienceLede: "Writing code since 2019, shipping it professionally since 2023.",
+  experienceLede: "3+ years shipping software professionally, and writing code since 2019.",
   certificates: [
     { label: "MERN Stack Bootcamp, Udemy", href: "https://udemy-certificate.s3.amazonaws.com/image/UC-f008d853-c296-4f81-9358-4c9f51df5a01.jpg?v=1755337118000", external: true },
     { label: "Foundations of Web Development, Udemy", href: "https://udemy-certificate.s3.amazonaws.com/image/UC-e38cebd7-e5c9-4c4d-bc92-5e01f8fbdfdf.jpg?v=1733299197000", external: true },
