@@ -18,8 +18,8 @@ export const site = {
   navCta: "Hire me",
   employers: ["LEAD Management Pte Ltd", "Appnado IT Solutions", "Pru Life UK", "Independent clients"],
   bio: [
-    "I'm a full-stack developer based in Bicol, Philippines. I build web and mobile products end to end, from the database schema to the last pixel of the interface.",
-    "I've shipped sales platforms, real-time broadcast systems, an AI career coach, and a fingerprint door lock running on a Raspberry Pi. I care about clean architecture, fast interfaces, and code the next developer can read.",
+    "I'm a software engineer based in Bicol, Philippines. I build web, mobile, and AI products end to end, from the database schema to the last pixel of the interface.",
+    "Lately my focus is AI: Safeship, a security co-pilot that scans GitHub repos and explains every fix in plain English, and Mentra, an AI career coach. I also build the systems businesses run on: sales platforms like Sellora, business and e-commerce platforms, and management systems for local government, broadcasting, and schools.",
     "Right now I'm a Software Engineer at LEAD Management Pte Ltd and a Full Stack Developer at Appnado IT Solutions, and I take on freelance projects on the side.",
   ],
   stats: [
