@@ -19,7 +19,7 @@ export const site = {
   employers: ["LEAD Management Pte Ltd", "Appnado IT Solutions", "Pru Life UK", "Independent clients"],
   bio: [
     "I'm a software engineer based in Bicol, Philippines. I build web, mobile, and AI products end to end, from the database schema to the last pixel of the interface.",
-    "Lately my focus is AI: Safeship, a security co-pilot that scans GitHub repos and explains every fix in plain English, and Mentra, an AI career coach. I also build the systems businesses run on: sales platforms like Sellora, business and e-commerce platforms, and management systems for local government, broadcasting, and schools.",
+    "I build AI-powered applications, sales and business platforms, and management systems: software that automates the busywork, keeps records in one place, and helps teams make better decisions. I care about clean architecture, fast interfaces, and code the next developer can read.",
     "Right now I'm a Software Engineer at LEAD Management Pte Ltd and a Full Stack Developer at Appnado IT Solutions, and I take on freelance projects on the side.",
   ],
   stats: [
