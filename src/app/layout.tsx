@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Anton, Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import { site } from "@/content/site";
 import { BOOT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
@@ -36,7 +37,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <script dangerouslySetInnerHTML={{ __html: BOOT_SCRIPT }} />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* Vercel Web Analytics. The script is served by Vercel itself, so skip it outside Vercel builds. */}
+        {process.env.VERCEL ? <Script src="/_vercel/insights/script.js" strategy="afterInteractive" /> : null}
+      </body>
     </html>
   );
 }
