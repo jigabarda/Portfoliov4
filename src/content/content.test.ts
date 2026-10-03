@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import { roleDuration } from "@/lib/duration";
 import { experience } from "./experience";
 import { featuredProjects, projects } from "./projects";
+import { site } from "./site";
 import { techTiles } from "./stack-icons";
 import { testimonials } from "./testimonials";
 
@@ -62,5 +63,12 @@ describe("toolkit tiles", () => {
 describe("testimonials", () => {
   it("never ships the unconfirmed LGU draft", () => {
     expect(testimonials.find((t) => t.id === "lgu-draft")?.approved).toBe(false);
+  });
+});
+
+describe("site", () => {
+  it("shows the domain address publicly, never the personal Gmail", () => {
+    expect(site.email).toBe("hello@jamesgabarda.com");
+    expect(JSON.stringify(site)).not.toMatch(/@gmail\.com/);
   });
 });
