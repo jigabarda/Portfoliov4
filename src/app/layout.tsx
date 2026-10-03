@@ -21,7 +21,6 @@ export const metadata: Metadata = {
   title: { default: title, template: "%s | James Gabarda" },
   description,
   alternates: { canonical: "/" },
-  icons: { icon: "/logo.png" },
   openGraph: {
     type: "website",
     url: "/",
