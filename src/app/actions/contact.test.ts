@@ -16,10 +16,12 @@ import { sendInquiry, type InquiryState } from "./contact";
 
 const idle: InquiryState = { status: "idle" };
 let n = 0;
+let e = 0;
 
+// A fresh email per submission keeps the per-email cooldown out of tests that are not about it.
 function form(overrides: Record<string, string> = {}): FormData {
   const fd = new FormData();
-  const values = { name: "Jane Cruz", email: "jane@company.com", project: "Sales dashboard", budget: "5-25k", message: "We need a dashboard for three stores.", ...overrides };
+  const values = { name: "Jane Cruz", email: `jane${++e}@company.com`, project: "Sales dashboard", budget: "5-25k", message: "We need a dashboard for three stores.", ...overrides };
   for (const [k, v] of Object.entries(values)) fd.set(k, v);
   return fd;
 }
@@ -41,7 +43,7 @@ describe("sendInquiry", () => {
   });
 
   it("sends the email with Reply-To set to the visitor", async () => {
-    const state = await sendInquiry(idle, form());
+    const state = await sendInquiry(idle, form({ email: "jane@company.com" }));
     expect(state.status).toBe("success");
     expect(mocks.send).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -95,5 +97,21 @@ describe("sendInquiry", () => {
     const blocked = await sendInquiry(idle, form());
     expect(blocked.status).toBe("error");
     expect(blocked.message).toMatch(/too many/i);
+  });
+
+  it("lets one email address send only once per cooldown, whatever the IP or letter case", async () => {
+    expect((await sendInquiry(idle, form({ email: "repeat@company.com" }))).status).toBe("success");
+    mocks.ip = "10.9.9.9";
+    const again = await sendInquiry(idle, form({ email: " Repeat@Company.com " }));
+    expect(again.status).toBe("error");
+    expect(again.message).toMatch(/already reached me/i);
+    expect(again.message).toContain(site.email);
+    expect(mocks.send).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not start the email cooldown when sending fails", async () => {
+    mocks.send.mockResolvedValueOnce({ data: null, error: { name: "validation_error", message: "bad" } });
+    expect((await sendInquiry(idle, form({ email: "retry@company.com" }))).status).toBe("error");
+    expect((await sendInquiry(idle, form({ email: "retry@company.com" }))).status).toBe("success");
   });
 });
