@@ -58,23 +58,55 @@ function greetingName(name: string): string {
   return clean || "there";
 }
 
+const SITE = "https://www.jamesgabarda.com";
+const LINKEDIN = "https://www.linkedin.com/in/james-ivan-gabarda/";
+const GITHUB = "https://github.com/jigabarda";
+
 /**
  * Confirmation sent to the visitor. It deliberately contains nothing they typed except a
  * cleaned first name, so the form cannot be used to send arbitrary text to someone else.
+ * Table layout with inline styles, which is what email clients render reliably.
  */
 export function formatAutoReply(name: string): { subject: string; text: string; html: string } {
   const who = greetingName(name);
-  const lines = [
+  const promise = "Thanks for getting in touch about your project. I've received your message and will reply within one business day.";
+  const meanwhile = "In the meantime, feel free to look through my recent projects.";
+  const footnote = "You're receiving this because you sent a message through my portfolio's contact form. Just reply to this email if you have anything to add.";
+
+  const text = [
     `Hi ${who},`,
-    "Thanks for getting in touch about your project. I've received your message and will reply within one business day.",
-    "In the meantime, you can look through my recent work at https://www.jamesgabarda.com.",
-  ];
-  const signature = "James Gabarda\nSoftware Engineer · jamesgabarda.com";
-  const text = `${lines.join("\n\n")}\n\n${signature}\n`;
-  const html =
-    `<p>Hi ${escapeHtml(who)},</p>` +
-    `<p>${escapeHtml(lines[1])}</p>` +
-    `<p>In the meantime, you can look through my recent work at <a href="https://www.jamesgabarda.com">jamesgabarda.com</a>.</p>` +
-    `<p>James Gabarda<br>Software Engineer · <a href="https://www.jamesgabarda.com">jamesgabarda.com</a></p>`;
+    promise,
+    `${meanwhile}\n${SITE}`,
+    "James Gabarda\nSoftware Engineer · Bicol, Philippines",
+    `LinkedIn: ${LINKEDIN}\nGitHub: ${GITHUB}`,
+    footnote,
+  ].join("\n\n") + "\n";
+
+  const font = "font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
+  const html = `<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"></head><body style="margin:0;padding:0;background:#F1EFEE">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#F1EFEE"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#FFFFFF;border-radius:12px;overflow:hidden">
+<tr><td bgcolor="#0B0A0A" style="padding:22px 32px">
+<span style="font-family:Impact,'Arial Narrow Bold','Arial Black',sans-serif;font-size:24px;letter-spacing:1px;color:#D8393B">JIGSTACK</span>
+</td></tr>
+<tr><td style="padding:32px 32px 8px;${font};font-size:16px;line-height:1.6;color:#1A1717">
+<p style="margin:0 0 16px">Hi ${escapeHtml(who)},</p>
+<p style="margin:0 0 16px">${escapeHtml(promise)}</p>
+<p style="margin:0 0 24px">${escapeHtml(meanwhile)}</p>
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td bgcolor="#D8393B" style="border-radius:999px">
+<a href="${SITE}" style="display:inline-block;padding:12px 24px;${font};font-size:15px;font-weight:600;color:#FFFFFF;text-decoration:none">See my recent work &rarr;</a>
+</td></tr></table>
+</td></tr>
+<tr><td style="padding:24px 32px 32px;${font};font-size:16px;line-height:1.5;color:#1A1717">
+<strong>James Gabarda</strong><br><span style="color:#6B6464;font-size:14px">Software Engineer &middot; Bicol, Philippines</span>
+</td></tr>
+<tr><td bgcolor="#F7F5F4" style="padding:20px 32px;border-top:1px solid #E6E1E0;${font};font-size:12px;line-height:1.6;color:#8A8383">
+<a href="${LINKEDIN}" style="color:#1A1717;font-weight:600;text-decoration:none">LinkedIn</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="${GITHUB}" style="color:#1A1717;font-weight:600;text-decoration:none">GitHub</a><br>
+${escapeHtml(footnote)}
+</td></tr>
+</table>
+</td></tr></table>
+</body></html>`;
+
   return { subject: "Thanks for reaching out, I got your message", text, html };
 }

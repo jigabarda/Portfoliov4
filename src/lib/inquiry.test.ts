@@ -64,7 +64,21 @@ describe("formatAutoReply", () => {
     expect(r.text).toMatch(/^Hi Jane,/);
     expect(r.text).not.toContain("Cruz");
     expect(r.text).toContain("within one business day");
-    expect(r.html).toContain("jamesgabarda.com");
+  });
+
+  it("links to the site once, from a single button", () => {
+    const r = formatAutoReply("Jane Cruz");
+    expect(r.html.match(/jamesgabarda\.com/g)).toHaveLength(1);
+    expect(r.html).toContain("See my recent work");
+    expect(r.text.match(/jamesgabarda\.com/g)).toHaveLength(1);
+  });
+
+  it("has a branded header and a footer with profile links", () => {
+    const r = formatAutoReply("Jane Cruz");
+    expect(r.html).toContain("JIGSTACK");
+    expect(r.html).toContain("https://www.linkedin.com/in/james-ivan-gabarda/");
+    expect(r.html).toContain("https://github.com/jigabarda");
+    expect(r.html).toMatch(/contact form/i);
   });
 
   it("never echoes anything else the visitor typed", () => {
