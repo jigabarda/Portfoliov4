@@ -13,8 +13,12 @@ describe("robots.txt", () => {
 });
 
 describe("sitemap.xml", () => {
-  it("lists the home page on the canonical domain", () => {
-    const entries = sitemap();
-    expect(entries.map((e) => e.url)).toEqual([site.url]);
+  it("lists the home page and every project page on the canonical domain", () => {
+    expect(sitemap().map((e) => e.url)).toEqual([
+      site.url,
+      `${site.url}/projects/sellora`,
+      `${site.url}/projects/safeship`,
+      `${site.url}/projects/bms`,
+    ]);
   });
 });

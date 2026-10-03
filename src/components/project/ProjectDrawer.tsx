@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowRight, ArrowUpRight, Close } from "@/components/icons";
+import { projectPath } from "@/content/projects";
 import type { Project } from "@/content/types";
 
 type DrawerApi = { open: (id: string, trigger: HTMLElement) => void };
@@ -142,6 +144,10 @@ export function ProjectDrawerProvider({ projects, children }: { projects: Projec
                 <p className="kicker">Built with</p>
                 <ul className="tags">{current.stack.map((t) => <li key={t}>{t}</li>)}</ul>
               </section>
+              {/* Close first: the drawer's scroll lock lives on <html> and would outlive the navigation. */}
+              <Link className="text-link drawer-page-link" href={projectPath(current.id)} onClick={() => close()}>
+                Read the full project page <ArrowRight />
+              </Link>
             </div>
 
             <footer className="drawer-foot">

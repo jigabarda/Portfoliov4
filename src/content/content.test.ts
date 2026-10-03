@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { roleDuration } from "@/lib/duration";
 import { experience } from "./experience";
-import { featuredProjects, projects } from "./projects";
+import { featuredProjects, projectPages, projectPath, projects } from "./projects";
 import { site } from "./site";
 import { techTiles } from "./stack-icons";
 import { testimonials } from "./testimonials";
@@ -41,6 +41,17 @@ describe("projects", () => {
       if (p.image) expect(existsSync(join(process.cwd(), "public", p.image.src)), p.image.src).toBe(true);
       else expect(p.thumbInitials, p.id).toBeTruthy();
     }
+  });
+});
+
+describe("project pages", () => {
+  it("exist only for projects with a full write-up", () => {
+    expect(projectPages.map((p) => p.id)).toEqual(["sellora", "safeship", "bms"]);
+    for (const p of projectPages) expect(p.detail, p.id).toBeDefined();
+  });
+
+  it("live under /projects/<id>", () => {
+    expect(projectPath("sellora")).toBe("/projects/sellora");
   });
 });
 

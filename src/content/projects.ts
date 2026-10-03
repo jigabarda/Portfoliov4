@@ -152,3 +152,10 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured);
+
+/** Projects with a full write-up get their own page; the rest only appear in the index. */
+export const projectPages = projects.filter((p) => p.detail);
+
+export function projectPath(id: string): string {
+  return `/projects/${id}`;
+}

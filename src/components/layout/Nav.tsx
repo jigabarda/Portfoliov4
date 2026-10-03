@@ -8,7 +8,8 @@ import { applyTheme, currentTheme, type Theme } from "@/lib/theme";
 /** Every section the highlight should know about; ones without a nav link clear it. */
 const TRACKED = ["home", "projects", "services", "process", "about", "stack", "testimonials", "contact"];
 
-export default function Nav() {
+/** `home` is the path the section links point at: "" on the home page itself, "/" on other pages. */
+export default function Nav({ home = "" }: { home?: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
   const [next, setNext] = useState<Theme | null>(null);
@@ -40,11 +41,11 @@ export default function Nav() {
   return (
     <header className="nav" id="nav">
       <div className="wrap nav-inner">
-        <a className="brand" href="#home" aria-label="JigStack, back to top">{site.brand}</a>
+        <a className="brand" href={`${home}#home`} aria-label="JigStack, back to top">{site.brand}</a>
 
         <nav className="nav-links" aria-label="Primary">
           {NAV_LINKS.map((link) => (
-            <a key={link.id} href={`#${link.id}`} aria-current={active === link.id ? "true" : undefined}>
+            <a key={link.id} href={`${home}#${link.id}`} aria-current={active === link.id ? "true" : undefined}>
               {link.label}
             </a>
           ))}
@@ -55,7 +56,7 @@ export default function Nav() {
             <Moon />
             <Sun />
           </button>
-          <a className="btn btn-primary btn-sm" href="#contact">{site.navCta}</a>
+          <a className="btn btn-primary btn-sm" href={`${home}#contact`}>{site.navCta}</a>
           <button
             className="icon-btn menu-btn"
             type="button"
@@ -72,7 +73,7 @@ export default function Nav() {
       <div className="mobile-menu" id="mobile-menu" hidden={!menuOpen}>
         <div className="wrap">
           {NAV_LINKS.map((link) => (
-            <a key={link.id} href={`#${link.id}`} onClick={() => setMenuOpen(false)}>{link.label}</a>
+            <a key={link.id} href={`${home}#${link.id}`} onClick={() => setMenuOpen(false)}>{link.label}</a>
           ))}
         </div>
       </div>
