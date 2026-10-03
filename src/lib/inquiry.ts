@@ -86,8 +86,8 @@ export function formatAutoReply(name: string): { subject: string; text: string; 
   const html = `<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"></head><body style="margin:0;padding:0;background:#F1EFEE">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#F1EFEE"><tr><td align="center" style="padding:24px 12px">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#FFFFFF;border-radius:12px;overflow:hidden">
-<tr><td bgcolor="#0B0A0A" style="padding:22px 32px">
-<span style="font-family:Impact,'Arial Narrow Bold','Arial Black',sans-serif;font-size:24px;letter-spacing:1px;color:#D8393B">JIGSTACK</span>
+<tr><td bgcolor="#0B0A0A" style="padding:0;line-height:0">
+<img src="${SITE}/email/header.png" width="560" alt="JIGSTACK" style="display:block;width:100%;max-width:560px;height:auto;border:0;font-family:Impact,'Arial Narrow Bold','Arial Black',sans-serif;font-size:24px;line-height:72px;letter-spacing:1px;color:#D8393B;text-indent:32px">
 </td></tr>
 <tr><td style="padding:32px 32px 8px;${font};font-size:16px;line-height:1.6;color:#1A1717">
 <p style="margin:0 0 16px">Hi ${escapeHtml(who)},</p>
