@@ -58,6 +58,12 @@ describe("toolkit tiles", () => {
       expect(t.brand, t.name).toMatch(/^(#[0-9A-Fa-f]{6}|var\(--text\))$/);
     }
   });
+
+  it("shows Ruby in place of Claude", () => {
+    const names = techTiles.map((t) => t.name);
+    expect(names).toContain("Ruby");
+    expect(names).not.toContain("Claude");
+  });
 });
 
 describe("testimonials", () => {
