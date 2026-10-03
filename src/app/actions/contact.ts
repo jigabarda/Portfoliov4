@@ -3,7 +3,8 @@
 import { headers } from "next/headers";
 import { Resend } from "resend";
 import { z } from "zod";
-import { formDataToObject, formatInquiryEmail, inquirySchema } from "@/lib/inquiry";
+import { formDataToObject, formatAutoReply, formatInquiryEmail, inquirySchema } from "@/lib/inquiry";
+import { createCooldown } from "@/lib/cooldown";
 import { createRateLimiter } from "@/lib/rate-limit";
 import { site } from "@/content/site";
 
@@ -22,7 +23,15 @@ const NOT_CONFIGURED = `The form isn't available right now. Please email me dire
 const SEND_FAILED = `Your message couldn't be sent. Please try again, or email me directly at ${site.email}.`;
 const TOO_MANY = `Too many messages from your connection. Please try again in a few minutes, or email me directly at ${site.email}.`;
 
+const EMAIL_COOLDOWN_MINUTES = 10;
+
 const allow = createRateLimiter({ limit: 5, windowMs: 10 * 60 * 1000 });
+// One inquiry per email address per cooldown, so the form cannot be used to flood one inbox.
+const emailCooldown = createCooldown({ ms: EMAIL_COOLDOWN_MINUTES * 60 * 1000 });
+
+function sameEmailWait(minutes: number): string {
+  return `Your earlier message from this email already reached me. Please wait ${minutes} minute${minutes === 1 ? "" : "s"} before sending another, or email me directly at ${site.email}.`;
+}
 
 export async function sendInquiry(_prev: InquiryState, formData: FormData): Promise<InquiryState> {
   const raw = formDataToObject(formData);
@@ -44,6 +53,10 @@ export async function sendInquiry(_prev: InquiryState, formData: FormData): Prom
   const ip = ((await headers()).get("x-forwarded-for") ?? "").split(",")[0].trim() || "unknown";
   if (!allow(ip)) return { status: "error", message: TOO_MANY };
 
+  const emailKey = parsed.data.email.toLowerCase();
+  const wait = emailCooldown.remaining(emailKey);
+  if (wait > 0) return { status: "error", message: sameEmailWait(Math.ceil(wait / 60_000)) };
+
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL;
   if (!apiKey || !to) {
@@ -51,9 +64,12 @@ export async function sendInquiry(_prev: InquiryState, formData: FormData): Prom
     return { status: "error", message: NOT_CONFIGURED };
   }
 
+  const resend = new Resend(apiKey);
+  const customFrom = process.env.CONTACT_FROM_EMAIL;
+
   try {
-    const { error } = await new Resend(apiKey).emails.send({
-      from: process.env.CONTACT_FROM_EMAIL || DEFAULT_FROM,
+    const { error } = await resend.emails.send({
+      from: customFrom || DEFAULT_FROM,
       to,
       replyTo: parsed.data.email,
       ...formatInquiryEmail(parsed.data),
@@ -65,6 +81,21 @@ export async function sendInquiry(_prev: InquiryState, formData: FormData): Prom
   } catch (err) {
     console.error("Contact form: Resend request failed", err);
     return { status: "error", message: SEND_FAILED };
+  }
+
+  // Start the cooldown only once the inquiry really went out, so a failed send can be retried.
+  emailCooldown.start(emailKey);
+
+  // Confirmation to the visitor. Only from the verified domain: Resend's shared test sender
+  // can mail nobody but the account owner. The inquiry already arrived, so a failure here is
+  // logged and never shown to the visitor.
+  if (customFrom) {
+    try {
+      const { error } = await resend.emails.send({ from: customFrom, to: parsed.data.email, ...formatAutoReply(parsed.data.name) });
+      if (error) console.error("Contact form: auto-reply returned an error", error);
+    } catch (err) {
+      console.error("Contact form: auto-reply request failed", err);
+    }
   }
 
   return { status: "success", message: SUCCESS };

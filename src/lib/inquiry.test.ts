@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { escapeHtml, formatInquiryEmail, formDataToObject, inquirySchema } from "./inquiry";
+import { escapeHtml, formatAutoReply, formatInquiryEmail, formDataToObject, inquirySchema } from "./inquiry";
 
 const valid = {
   name: "Jane Cruz",
@@ -54,5 +54,31 @@ describe("helpers", () => {
     fd.set("name", "Jane");
     fd.set("file", new Blob(["x"]));
     expect(formDataToObject(fd)).toEqual({ name: "Jane" });
+  });
+});
+
+describe("formatAutoReply", () => {
+  it("greets by first name only and promises a reply", () => {
+    const r = formatAutoReply("Jane Cruz");
+    expect(r.subject).toBe("Thanks for reaching out, I got your message");
+    expect(r.text).toMatch(/^Hi Jane,/);
+    expect(r.text).not.toContain("Cruz");
+    expect(r.text).toContain("within one business day");
+    expect(r.html).toContain("jamesgabarda.com");
+  });
+
+  it("never echoes anything else the visitor typed", () => {
+    const r = formatAutoReply("Buy cheap pills at spam.example now");
+    expect(r.text).toMatch(/^Hi Buy,/);
+    expect(r.text).not.toContain("spam.example");
+  });
+
+  it("keeps only name characters and caps the length", () => {
+    expect(formatAutoReply("<b>Ann</b>").text).toMatch(/^Hi bAnnb,/);
+    expect(formatAutoReply("X".repeat(200)).text.split(",")[0].length).toBeLessThanOrEqual(3 + 30);
+  });
+
+  it("falls back to a neutral greeting when no usable name is left", () => {
+    expect(formatAutoReply("<<>>").text).toMatch(/^Hi there,/);
   });
 });
