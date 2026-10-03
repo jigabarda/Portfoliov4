@@ -9,14 +9,16 @@ const anton = Anton({ weight: "400", subsets: ["latin"], variable: "--font-anton
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 
-const title = "James Gabarda — AI & Software Engineer";
+// Name first for name searches, then the role and place people search for.
+const title = "James Gabarda — AI & Software Engineer in the Philippines";
 const description =
-  "James Ivan Gabarda builds custom software, web and mobile apps, and AI features for businesses. Based in Bicol, Philippines.";
+  "James Ivan Gabarda is an AI and software engineer in Bicol, Philippines, building custom web and mobile apps, business platforms, and AI features for clients worldwide.";
 
 export const metadata: Metadata = {
   // Resolves relative URLs (like the generated preview image) against the real domain.
   metadataBase: new URL(site.url),
-  title,
+  // Other pages set their own title, shown as "Page | James Gabarda".
+  title: { default: title, template: "%s | James Gabarda" },
   description,
   alternates: { canonical: "/" },
   icons: { icon: "/logo.png" },
