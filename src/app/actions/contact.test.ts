@@ -114,4 +114,38 @@ describe("sendInquiry", () => {
     expect((await sendInquiry(idle, form({ email: "retry@company.com" }))).status).toBe("error");
     expect((await sendInquiry(idle, form({ email: "retry@company.com" }))).status).toBe("success");
   });
+
+  describe("auto-reply", () => {
+    const FROM = "James Gabarda <hello@jamesgabarda.com>";
+
+    it("sends the visitor a confirmation after the inquiry goes out", async () => {
+      process.env.CONTACT_FROM_EMAIL = FROM;
+      const state = await sendInquiry(idle, form({ email: "client@company.com" }));
+      expect(state.status).toBe("success");
+      expect(mocks.send).toHaveBeenCalledTimes(2);
+      expect(mocks.send).toHaveBeenLastCalledWith(
+        expect.objectContaining({ from: FROM, to: "client@company.com", subject: "Thanks for reaching out, I got your message" }),
+      );
+    });
+
+    it("is skipped on Resend's shared test sender, which can only mail the account owner", async () => {
+      await sendInquiry(idle, form());
+      expect(mocks.send).toHaveBeenCalledTimes(1);
+    });
+
+    it("is not sent when the inquiry itself fails", async () => {
+      process.env.CONTACT_FROM_EMAIL = FROM;
+      mocks.send.mockResolvedValueOnce({ data: null, error: { name: "validation_error", message: "bad" } });
+      expect((await sendInquiry(idle, form())).status).toBe("error");
+      expect(mocks.send).toHaveBeenCalledTimes(1);
+    });
+
+    it("never turns a delivered inquiry into an error", async () => {
+      process.env.CONTACT_FROM_EMAIL = FROM;
+      mocks.send
+        .mockResolvedValueOnce({ data: { id: "email_1" }, error: null })
+        .mockRejectedValueOnce(new Error("network down"));
+      expect((await sendInquiry(idle, form())).status).toBe("success");
+    });
+  });
 });

@@ -3,7 +3,7 @@
 import { headers } from "next/headers";
 import { Resend } from "resend";
 import { z } from "zod";
-import { formDataToObject, formatInquiryEmail, inquirySchema } from "@/lib/inquiry";
+import { formDataToObject, formatAutoReply, formatInquiryEmail, inquirySchema } from "@/lib/inquiry";
 import { createCooldown } from "@/lib/cooldown";
 import { createRateLimiter } from "@/lib/rate-limit";
 import { site } from "@/content/site";
@@ -64,9 +64,12 @@ export async function sendInquiry(_prev: InquiryState, formData: FormData): Prom
     return { status: "error", message: NOT_CONFIGURED };
   }
 
+  const resend = new Resend(apiKey);
+  const customFrom = process.env.CONTACT_FROM_EMAIL;
+
   try {
-    const { error } = await new Resend(apiKey).emails.send({
-      from: process.env.CONTACT_FROM_EMAIL || DEFAULT_FROM,
+    const { error } = await resend.emails.send({
+      from: customFrom || DEFAULT_FROM,
       to,
       replyTo: parsed.data.email,
       ...formatInquiryEmail(parsed.data),
@@ -82,5 +85,18 @@ export async function sendInquiry(_prev: InquiryState, formData: FormData): Prom
 
   // Start the cooldown only once the inquiry really went out, so a failed send can be retried.
   emailCooldown.start(emailKey);
+
+  // Confirmation to the visitor. Only from the verified domain: Resend's shared test sender
+  // can mail nobody but the account owner. The inquiry already arrived, so a failure here is
+  // logged and never shown to the visitor.
+  if (customFrom) {
+    try {
+      const { error } = await resend.emails.send({ from: customFrom, to: parsed.data.email, ...formatAutoReply(parsed.data.name) });
+      if (error) console.error("Contact form: auto-reply returned an error", error);
+    } catch (err) {
+      console.error("Contact form: auto-reply request failed", err);
+    }
+  }
+
   return { status: "success", message: SUCCESS };
 }
