@@ -13,10 +13,12 @@ import Testimonial from "@/components/sections/Testimonial";
 import Toolkit from "@/components/sections/Toolkit";
 import RevealObserver from "@/components/ui/RevealObserver";
 import { featuredProjects } from "@/content/projects";
+import { jsonLdScript, siteJsonLd } from "@/lib/structured-data";
 
 export default function Page() {
   return (
     <ProjectDrawerProvider projects={featuredProjects}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(siteJsonLd()) }} />
       <Nav />
       <main>
         <Hero />
