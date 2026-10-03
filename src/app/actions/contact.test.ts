@@ -29,9 +29,16 @@ beforeEach(() => {
   mocks.ip = `10.0.0.${++n}`; // fresh IP per test so the rate limit does not leak between tests
   process.env.RESEND_API_KEY = "re_test";
   process.env.CONTACT_TO_EMAIL = "jamesivangabarda8@gmail.com";
+  delete process.env.CONTACT_FROM_EMAIL;
 });
 
 describe("sendInquiry", () => {
+  it("sends from CONTACT_FROM_EMAIL when it is set", async () => {
+    process.env.CONTACT_FROM_EMAIL = "James Gabarda <hello@jamesgabarda.com>";
+    await sendInquiry(idle, form());
+    expect(mocks.send).toHaveBeenCalledWith(expect.objectContaining({ from: "James Gabarda <hello@jamesgabarda.com>" }));
+  });
+
   it("sends the email with Reply-To set to the visitor", async () => {
     const state = await sendInquiry(idle, form());
     expect(state.status).toBe("success");

@@ -14,7 +14,8 @@ export type InquiryState = {
   fieldErrors?: Partial<Record<InquiryField, string>>;
 };
 
-const FROM = "Portfolio <onboarding@resend.dev>";
+// Resend's shared test sender; set CONTACT_FROM_EMAIL once your own domain is verified in Resend.
+const DEFAULT_FROM = "Portfolio <onboarding@resend.dev>";
 const SUCCESS = "Thanks, your message is on its way. I'll reply within a day.";
 const NOT_CONFIGURED = "The form isn't available right now. Please email me directly at jamesivangabarda8@gmail.com.";
 const SEND_FAILED = "Your message couldn't be sent. Please try again, or email me directly at jamesivangabarda8@gmail.com.";
@@ -51,7 +52,7 @@ export async function sendInquiry(_prev: InquiryState, formData: FormData): Prom
 
   try {
     const { error } = await new Resend(apiKey).emails.send({
-      from: FROM,
+      from: process.env.CONTACT_FROM_EMAIL || DEFAULT_FROM,
       to,
       replyTo: parsed.data.email,
       ...formatInquiryEmail(parsed.data),
