@@ -5,7 +5,9 @@ const PHONE = "639566297372";
 export const site = {
   name: "James Ivan Gabarda",
   brand: "JIGSTACK",
-  email: "jamesivangabarda8@gmail.com",
+  /** Canonical origin. The apex domain and the vercel.app URL both redirect or duplicate this. */
+  url: "https://www.jamesgabarda.com",
+  email: "hello@jamesgabarda.com",
   githubUrl: "https://github.com/jigabarda",
   status: "Available for new projects",
   heroLede: "I design and build fast, reliable web and mobile products, from the first sketch to launch day.",

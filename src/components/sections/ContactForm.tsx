@@ -3,6 +3,7 @@
 import { Fragment, startTransition, useActionState, useEffect, useRef } from "react";
 import { sendInquiry, type InquiryField, type InquiryState } from "@/app/actions/contact";
 import { ArrowRight } from "@/components/icons";
+import { site } from "@/content/site";
 import { BUDGETS } from "@/lib/budgets";
 import { withFallback } from "@/lib/safe-action";
 
@@ -11,7 +12,7 @@ const initial: InquiryState = { status: "idle" };
 // If the request itself fails (offline, timeout), show a message instead of crashing the page.
 const submit = withFallback(sendInquiry, (): InquiryState => ({
   status: "error",
-  message: "Couldn't reach the server. Check your connection and try again, or email me directly at jamesivangabarda8@gmail.com.",
+  message: `Couldn't reach the server. Check your connection and try again, or email me directly at ${site.email}.`,
 }));
 
 export default function ContactForm() {

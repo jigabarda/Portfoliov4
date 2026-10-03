@@ -11,6 +11,7 @@ vi.mock("resend", () => ({
   },
 }));
 
+import { site } from "@/content/site";
 import { sendInquiry, type InquiryState } from "./contact";
 
 const idle: InquiryState = { status: "idle" };
@@ -69,7 +70,7 @@ describe("sendInquiry", () => {
     delete process.env.RESEND_API_KEY;
     const state = await sendInquiry(idle, form());
     expect(state.status).toBe("error");
-    expect(state.message).toMatch(/email me directly/i);
+    expect(state.message).toContain(`email me directly at ${site.email}`);
   });
 
   it("reports a friendly error when Resend fails or throws", async () => {
@@ -86,7 +87,7 @@ describe("sendInquiry", () => {
 
   it("tells a rate-limited visitor how to reach me directly", async () => {
     for (let i = 0; i < 5; i++) await sendInquiry(idle, form());
-    expect((await sendInquiry(idle, form())).message).toMatch(/jamesivangabarda8@gmail\.com/);
+    expect((await sendInquiry(idle, form())).message).toContain(site.email);
   });
 
   it("rate-limits repeated submissions from one connection", async () => {
