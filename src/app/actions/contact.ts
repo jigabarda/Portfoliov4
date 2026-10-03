@@ -5,6 +5,7 @@ import { Resend } from "resend";
 import { z } from "zod";
 import { formDataToObject, formatInquiryEmail, inquirySchema } from "@/lib/inquiry";
 import { createRateLimiter } from "@/lib/rate-limit";
+import { site } from "@/content/site";
 
 export type InquiryField = "name" | "email" | "company" | "timeline" | "project" | "budget" | "message";
 
@@ -17,9 +18,9 @@ export type InquiryState = {
 // Resend's shared test sender; set CONTACT_FROM_EMAIL once your own domain is verified in Resend.
 const DEFAULT_FROM = "Portfolio <onboarding@resend.dev>";
 const SUCCESS = "Thanks, your message is on its way. I'll reply within a day.";
-const NOT_CONFIGURED = "The form isn't available right now. Please email me directly at jamesivangabarda8@gmail.com.";
-const SEND_FAILED = "Your message couldn't be sent. Please try again, or email me directly at jamesivangabarda8@gmail.com.";
-const TOO_MANY = "Too many messages from your connection. Please try again in a few minutes, or email me directly at jamesivangabarda8@gmail.com.";
+const NOT_CONFIGURED = `The form isn't available right now. Please email me directly at ${site.email}.`;
+const SEND_FAILED = `Your message couldn't be sent. Please try again, or email me directly at ${site.email}.`;
+const TOO_MANY = `Too many messages from your connection. Please try again in a few minutes, or email me directly at ${site.email}.`;
 
 const allow = createRateLimiter({ limit: 5, windowMs: 10 * 60 * 1000 });
 
