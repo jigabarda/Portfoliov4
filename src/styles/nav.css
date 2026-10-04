@@ -23,7 +23,12 @@
   letter-spacing: 0.02em;
   color: var(--accent);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
 }
+/* Block J beside the wordmark; sized in em so it scales with the nav and footer text. */
+.brand-mark { width: 1.15em; height: 1.15em; flex: none; }
 .nav-links { display: flex; gap: 2rem; }
 .nav-links a {
   position: relative;
