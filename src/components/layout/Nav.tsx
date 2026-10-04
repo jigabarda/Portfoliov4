@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Menu, Moon, Sun } from "@/components/icons";
+import BrandMark from "@/components/ui/BrandMark";
 import { NAV_LINKS, site } from "@/content/site";
 import { applyTheme, currentTheme, type Theme } from "@/lib/theme";
 
@@ -41,7 +42,7 @@ export default function Nav({ home = "" }: { home?: string }) {
   return (
     <header className="nav" id="nav">
       <div className="wrap nav-inner">
-        <a className="brand" href={`${home}#home`} aria-label="JigStack, back to top">{site.brand}</a>
+        <a className="brand" href={`${home}#home`} aria-label="JigStack, back to top"><BrandMark />{site.brand}</a>
 
         <nav className="nav-links" aria-label="Primary">
           {NAV_LINKS.map((link) => (
